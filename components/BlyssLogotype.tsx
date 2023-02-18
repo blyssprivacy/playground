@@ -16,7 +16,7 @@ export default function BlyssLogotype({ href }: { href?: string }) {
   const { classes } = useStyles();
   const theme = useMantineTheme();
 
-  let baseColor = 'white';
+  let baseColor = '#e9e9e9';
   let hoverColor = theme.colors.gray[0];
 
   return (

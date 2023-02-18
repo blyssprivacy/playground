@@ -1,39 +1,24 @@
-import React, { useEffect, useState } from 'react';
-import dynamic from 'next/dynamic';
-
-import { getAccessToken, withPageAuthRequired } from '@auth0/nextjs-auth0';
-import { UserProfile } from '@auth0/nextjs-auth0/client';
-import Buckets, { BucketMetadata } from '../components/Buckets';
-import ApiKeys, { ApiKeyData } from '../components/ApiKeys';
 import {
-  Box,
-  Stack,
-  Title,
   Anchor,
-  Text,
-  Alert,
-  TextInput,
-  PasswordInput,
-  SimpleGrid,
-  Tooltip,
-  Flex,
-  Group,
-  FlexProps,
-  useMantineTheme,
-  Spoiler,
-  Popover,
-  Button,
-  Divider,
+  Box,
   Code,
-  Mark,
+  Divider,
+  Flex,
+  FlexProps,
+  Group,
   List,
-  MediaQuery,
-  Loader,
-  ActionIcon,
-  Skeleton
+  SimpleGrid,
+  Skeleton,
+  Spoiler,
+  Stack,
+  Text,
+  Title,
+  useMantineTheme
 } from '@mantine/core';
+import { IconArrowDown, IconArrowRight, IconChevronDown, IconChevronUp, IconX } from '@tabler/icons-react';
+import dynamic from 'next/dynamic';
+import React, { useEffect, useState } from 'react';
 import MenuBar from '../components/MenuBar';
-import { IconArrowDown, IconArrowRight, IconChevronDown, IconX } from '@tabler/icons-react';
 
 const PasswordChecker = dynamic(() => import('../components/PasswordChecker'), {
   ssr: false,
@@ -124,15 +109,7 @@ function indexMatchesCoords(i: number, coords: { row: number; col: number }): bo
   return Math.floor(i / EXAMPLE_DIM) === coords.row && i % EXAMPLE_DIM === coords.col;
 }
 
-export default function SSRPage({
-  apiKeys,
-  buckets,
-  user
-}: {
-  apiKeys: ApiKeyData[];
-  buckets: BucketMetadata[];
-  user: UserProfile;
-}) {
+export default function SSRPage() {
   const [pass, setPass] = useState('');
   const [hash, setHash] = useState('');
   const [loading, setLoading] = useState(false);
@@ -162,24 +139,26 @@ export default function SSRPage({
     <>
       <MenuBar href="https://blyss.dev" />
       <Stack mt={128} fz="lg">
-        <Title order={1} color="white">
-          The
-          <Text inherit component="span" color="blyssPink" fs="italic" ml={8} mr={4}>
-            private
-          </Text>{' '}
-          password checker.
-        </Title>
-        <Text color="white">
-          Services like "Have I Been Pwned?" let you check whether your password has recently appeared in a breach.
-          However, in performing the check, they{' '}
-          <Anchor href="https://cablej.io/blog/k-anonymity/">learn information about your password</Anchor>.
-        </Text>
-        <Text color="white">
-          The Blyss password checker uses{' '}
-          <Anchor href="https://cablej.io/blog/k-anonymity/">homomorphic encryption</Anchor> to keep your password
-          completely private. Nobody can learn <strong>any</strong> information about your password, not even our
-          servers.
-        </Text>
+        <Stack maw={780}>
+          <Title order={1} color="white">
+            The
+            <Text inherit component="span" color="blyssPink" fs="italic" ml={8} mr={4}>
+              private
+            </Text>{' '}
+            password checker.
+          </Title>
+          <Text color="white">
+            Services like "Have I Been Pwned?" let you check whether your password has recently appeared in a breach.
+            However, in performing the check, they{' '}
+            <Anchor href="https://cablej.io/blog/k-anonymity/">learn information about your password</Anchor>.
+          </Text>
+          <Text color="white">
+            The Blyss password checker uses{' '}
+            <Anchor href="https://cablej.io/blog/k-anonymity/">homomorphic encryption</Anchor> to keep your password
+            completely private. Nobody can learn <strong>any</strong> information about your password, not even our
+            servers.
+          </Text>
+        </Stack>
         {/* <Text color="white">
           We check your password against all{' '}
           <Anchor href="">~1 billion passwords in the 2021 "Have I Been Pwned" dataset</Anchor>.
@@ -208,10 +187,20 @@ export default function SSRPage({
               transitionDuration={800}
               w="100%"
               maxHeight={showExplanation ? 100000 : 0}
-              hideLabel="Read less"
+              hideLabel={
+                <>
+                  Read less
+                  <Box display="inline-block" pl={4} pos="relative" top={2}>
+                    <IconChevronUp size={14} />
+                  </Box>
+                </>
+              }
               showLabel={
                 <>
-                  See how it works <IconChevronDown size={14} />
+                  See how it works
+                  <Box display="inline-block" pl={4} pos="relative" top={2}>
+                    <IconChevronDown size={14} />
+                  </Box>
                 </>
               }
               pb={32}>

@@ -26,7 +26,7 @@ const Layout = ({ children }: { children: ReactNode }) => (
               transform: 'scaleX(-1)',
               zIndex: -1
             }}></Box>
-          <Box sx={{ maxWidth: 1040, paddingTop: 20, margin: 'auto' }}>{children}</Box>
+          <Box sx={{ maxWidth: 1172, paddingTop: 20, margin: 'auto' }}>{children}</Box>
         </Box>
       </MediaQuery>
     </Box>

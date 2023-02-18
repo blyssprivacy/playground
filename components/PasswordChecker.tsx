@@ -1,4 +1,4 @@
-import { Group, PasswordInput, ActionIcon, Loader, Stack, Box, Alert, Anchor } from '@mantine/core';
+import { Group, PasswordInput, ActionIcon, Loader, Stack, Box, Alert, Anchor, Collapse } from '@mantine/core';
 import { IconAlertCircle, IconArrowRight, IconCircleCheck } from '@tabler/icons-react';
 import React, { ChangeEvent, useState } from 'react';
 import { Bucket, Client } from '@blyss/sdk';
@@ -46,10 +46,10 @@ function PasswordChecker({ value, onChange }: { value: string; onChange: (e: Cha
     if (result) {
       resultMsg = (
         <Alert icon={<IconAlertCircle size={16} />} title="Bad news - this password was found in a breach!" color="red">
-          Your password was found in the
-          <Anchor href="https://haveibeenpwned.com/Passwords">2021 "Have I Been Pwned" list</Anchor>
-          of compromised passwords. You should not use it going forward, and change it on any sites you currently use it
-          on.
+          This password was found in the{' '}
+          <Anchor href="https://haveibeenpwned.com/Passwords">2021 "Have I Been Pwned" database</Anchor> of compromised
+          passwords. This password should not be used going forward, and it should be changed on any sites you currently
+          use it with.
         </Alert>
       );
     } else {
@@ -58,7 +58,7 @@ function PasswordChecker({ value, onChange }: { value: string; onChange: (e: Cha
           icon={<IconCircleCheck size={16} />}
           title="Good news - this password was not found in the set of breached passwords."
           color="green">
-          Your password was <strong>not</strong> found in the 2021 "Have I Been Pwned" list of compromised passwords.
+          This password was <strong>not</strong> found in the 2021 "Have I Been Pwned" list of compromised passwords.
         </Alert>
       );
     }
@@ -86,7 +86,7 @@ function PasswordChecker({ value, onChange }: { value: string; onChange: (e: Cha
           </ActionIcon>
         </Group>
       </form>
-      <Box>{resultMsg}</Box>
+      <Collapse in={!loading}>{resultMsg}</Collapse>
     </Stack>
   );
 }
