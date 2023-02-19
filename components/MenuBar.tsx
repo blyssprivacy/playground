@@ -66,8 +66,13 @@ export default function MenuBar({ user, href }: { user?: UserProfile; href?: str
         <MediaQuery smallerThan="sm" styles={{ gap: 16 }}>
           <Flex align="center" justify="flex-end" style={{ flexGrow: 1 }} gap={32}>
             <Flex gap={24}>
-              <SocialIcon kind="github" />
-              <SocialIcon kind="twitter" />
+              <Anchor href="https://github.com/blyssprivacy/sdk">
+                <SocialIcon kind="github" />
+              </Anchor>
+
+              <Anchor href="https://twitter.com/blyssdev">
+                <SocialIcon kind="twitter" />
+              </Anchor>
             </Flex>
             <ActionButton href="https://console.blyss.dev">Get an API key</ActionButton>
           </Flex>
