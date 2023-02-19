@@ -167,7 +167,18 @@ export default function SSRPage() {
         <Stack mt={24} maw={1000}>
           <Flex w="100%" wrap="wrap" rowGap={48} columnGap={24}>
             <Flex w="100%" justify="flex-start" sx={{ flexGrow: 1 }}>
-              <PasswordChecker value={pass} onChange={e => setPass(e.target.value)} />
+              <Stack>
+                <PasswordChecker value={pass} onChange={e => setPass(e.target.value)} />
+                <Text maw={780}>
+                  You can <Anchor href="https://github.com/blyssprivacy/playground">see the code</Anchor> use for this
+                  demo, and{' '}
+                  <Anchor href="https://eprint.iacr.org/2022/949">
+                    read the paper outlining the scheme we use, "DoublePIR"
+                  </Anchor>
+                  . Our implementation has not yet been security reviewed, so please treat this tool with appropriate
+                  caution.
+                </Text>
+              </Stack>
               {/* <Group w="100%" maw={600} spacing="sm">
                 <PasswordInput
                   sx={{ flexGrow: 1 }}
