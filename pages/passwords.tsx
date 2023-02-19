@@ -391,7 +391,7 @@ export default function SSRPage() {
                 <Box w="40%" sx={{ flexGrow: 1 }} pt={48}>
                   <Stack spacing={64}>
                     <Stack spacing={8}>
-                      <Group spacing={0} align="stretch" position="center">
+                      <Group spacing={0} align="stretch" position="center" noWrap>
                         <Flex ta="right" pr={24} justify="flex-end">
                           <Box maw={120}>One-hot vector of bits</Box>
                         </Flex>
@@ -436,7 +436,7 @@ export default function SSRPage() {
                   <Divider w="100%" h={2}></Divider>
                 </Box>
 
-                <Flex w="100%" rowGap={48} columnGap={24} pos="relative">
+                <Flex w="100%" rowGap={48} columnGap={24} wrap="wrap" pos="relative">
                   {/* <Box
                 pos="absolute"
                 w="100%"
@@ -549,7 +549,7 @@ export default function SSRPage() {
                 </Box>
 
                 <Box w={400} sx={{ textAlign: 'left', flexGrow: 1 }}>
-                  <Stack pb={96}>
+                  <Stack>
                     <Explainer>
                       Finally, the client decrypts the encrypted row, and checks if their password is present in the
                       row.
@@ -560,7 +560,7 @@ export default function SSRPage() {
                   </Stack>
                 </Box>
                 <Box w="40%" sx={{ flexGrow: 1 }}>
-                  <Stack ml={16}>
+                  <Stack ml={16} pb={96}>
                     <Stack ml={194} spacing={8}>
                       <Group>Encrypted row</Group>
                       <Group spacing={12} align="flex-start" pos="relative">

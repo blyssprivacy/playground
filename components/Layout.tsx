@@ -24,7 +24,9 @@ const Layout = ({ children }: { children: ReactNode }) => (
               backgroundSize: 'cover',
               backgroundRepeat: 'no-repeat',
               transform: 'scaleX(-1)',
-              zIndex: -1
+              zIndex: -1,
+              top: 0,
+              left: 0
             }}></Box>
           <Box sx={{ maxWidth: 1172, paddingTop: 20, margin: 'auto' }}>{children}</Box>
         </Box>

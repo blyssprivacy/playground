@@ -49,23 +49,29 @@ export default function MenuBar({ user, href }: { user?: UserProfile; href?: str
           backgroundColor: '#1a1816',
           borderRadius: 12
         }}>
-        <Flex align="center" pl={64} gap={96}>
-          <Box>
-            <BlyssLogotype href={href} />
-          </Box>
-          <FineLine />
-        </Flex>
-        <Flex align="center" justify="flex-start" sx={{ flexGrow: 1 }} pl={96} gap={64}>
-          <MenuItem href="/">Playground</MenuItem>
-          <MenuItem href="https://docs.blyss.dev">Docs</MenuItem>
-        </Flex>
-        <Flex align="center" justify="flex-end" style={{ flexGrow: 1 }} gap={32}>
-          <Flex gap={24}>
-            <SocialIcon kind="github" />
-            <SocialIcon kind="twitter" />
+        <MediaQuery smallerThan="sm" styles={{ paddingLeft: 16, gap: 16 }}>
+          <Flex align="center" pl={64} gap={96}>
+            <Box>
+              <BlyssLogotype href={href} />
+            </Box>
+            <FineLine />
           </Flex>
-          <ActionButton href="https://console.blyss.dev">Get an API key</ActionButton>
-        </Flex>{' '}
+        </MediaQuery>
+        <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
+          <Flex align="center" justify="flex-start" sx={{ flexGrow: 1 }} pl={96} gap={64}>
+            <MenuItem href="/">Playground</MenuItem>
+            <MenuItem href="https://docs.blyss.dev">Docs</MenuItem>
+          </Flex>
+        </MediaQuery>
+        <MediaQuery smallerThan="sm" styles={{ gap: 16 }}>
+          <Flex align="center" justify="flex-end" style={{ flexGrow: 1 }} gap={32}>
+            <Flex gap={24}>
+              <SocialIcon kind="github" />
+              <SocialIcon kind="twitter" />
+            </Flex>
+            <ActionButton href="https://console.blyss.dev">Get an API key</ActionButton>
+          </Flex>
+        </MediaQuery>{' '}
       </Flex>
     </Flex>
   );
