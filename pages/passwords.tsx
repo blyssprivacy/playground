@@ -154,9 +154,9 @@ export default function SSRPage() {
           </Text>
           <Text color="white">
             The Blyss password checker uses{' '}
-            <Anchor href="https://cablej.io/blog/k-anonymity/">homomorphic encryption</Anchor> to keep your password
-            completely private. Nobody can learn <strong>any</strong> information about your password, not even our
-            servers.
+            <Anchor href="https://blintzbase.com/posts/password-breach-checking/">homomorphic encryption</Anchor> to
+            keep your password completely private. Nobody can learn <strong>any</strong> information about your
+            password, not even our servers.
           </Text>
         </Stack>
         {/* <Text color="white">
@@ -209,7 +209,10 @@ export default function SSRPage() {
                   <Stack>
                     <Explainer>
                       The client starts by hashing the password. If we sent this directly to the server, it{' '}
-                      <Anchor>could learn the password</Anchor>.
+                      <Anchor href="https://blintzbase.com/posts/password-breach-checking/">
+                        could learn the password
+                      </Anchor>
+                      .
                     </Explainer>
                   </Stack>
                 </Box>
@@ -361,7 +364,7 @@ export default function SSRPage() {
                   <Stack>
                     <Explainer>
                       The client uses{' '}
-                      <Anchor href="https://en.wikipedia.org/wiki/Homomorphic_encryption">
+                      <Anchor href="https://blintzbase.com/posts/pir-and-fhe-from-scratch/">
                         homomorphic encryption
                       </Anchor>{' '}
                       to retrieve the desired row, completely privately.
@@ -384,7 +387,11 @@ export default function SSRPage() {
                     </Explainer>
                     <Explainer>
                       The magic of homomorphic encryption is that, even though the encrypted bits look like garbage to
-                      the server, it can still <Anchor>do something useful with them</Anchor>. Let's see how.
+                      the server, it can still{' '}
+                      <Anchor href="https://en.wikipedia.org/wiki/Homomorphic_encryption#Fully_homomorphic_encryption">
+                        do something useful with them
+                      </Anchor>
+                      . Let's see how.
                     </Explainer>
                   </Stack>
                 </Box>
@@ -449,7 +456,10 @@ export default function SSRPage() {
                       </Explainer>
                       <Explainer>
                         Homomorphic encryption lets the server{' '}
-                        <Anchor>multiply the encrypted bits by data in the table</Anchor>!
+                        <Anchor href="https://blintzbase.com/posts/pir-and-fhe-from-scratch/#homomorphic-plaintext-multiplication">
+                          multiply the encrypted bits by data in the table
+                        </Anchor>
+                        !
                       </Explainer>
                       <Explainer>
                         The result <em>still</em> looks like garbage to the server, but the client can decrypt it and
