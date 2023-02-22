@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@auth0/nextjs-auth0": "^2.0.0",
-    "@blyss/sdk": "^0.1.4-alpha.3",
+    "@blyss/sdk": "^0.1.4-alpha.4",
     "@emotion/react": "^11.10.6",
     "@emotion/server": "^11.10.0",
     "@mantine/core": "^5.10.4",
@@ -25,6 +25,7 @@
     "helmet": "^6.0.1",
     "highlight.js": "^11.7.0",
     "jwks-rsa": "^3.0.0",
+    "lodash": "^4.17.21",
     "next": "^13.1.0",
     "nodemon": "^2.0.20",
     "react": "18.2.0"
@@ -33,6 +34,7 @@
     "@testing-library/dom": "^8.19.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
+    "@types/lodash": "^4.14.191",
     "@types/node": "18.8.5",
     "@types/react": "18.0.21",
     "@types/react-dom": "18.0.6",

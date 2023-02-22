@@ -170,7 +170,7 @@ export default function SSRPage() {
               <Stack>
                 <PasswordChecker value={pass} onChange={e => setPass(e.target.value)} />
                 <Text maw={780}>
-                  You can <Anchor href="https://github.com/blyssprivacy/playground">see the code</Anchor> use for this
+                  You can <Anchor href="https://github.com/blyssprivacy/playground">see the code</Anchor> used for this
                   demo, and{' '}
                   <Anchor href="https://eprint.iacr.org/2022/949">
                     read the paper outlining the scheme we use, "DoublePIR"
