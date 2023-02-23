@@ -7,7 +7,7 @@ import { Box, Container, MediaQuery } from '@mantine/core';
 const Layout = ({ children }: { children: ReactNode }) => (
   <Box>
     <Head>
-      <title>Blyss Console</title>
+      <title>Blyss Playground</title>
       <link rel="icon" type="image/png" href="/favicon-180.png" />
     </Head>
     <Box component="main">
