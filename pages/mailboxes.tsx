@@ -57,9 +57,9 @@ function Faq() {
       <h4>What is the metadata here, and why should I care about it?</h4>
       <p>
         In the context of messaging, metadata is "who's talking to who", and it can be just as sensitive as the message
-        itself. Anti-abortion states use call logs to Planned Parenthood as evidence of intent, and oppressive regimes
-        track down activists by tracing their contact patterns; wiretapping for metadata is alive and well in the age of
-        end-to-end encryption.
+        itself. For example, anti-abortion states use call logs to Planned Parenthood as evidence of intent, and
+        oppressive regimes track down activists by tracing their contact patterns. Wiretapping for metadata is alive and
+        well, even in the age of end-to-end encryption.
       </p>
 
       <h4>How is message metadata secured?</h4>
