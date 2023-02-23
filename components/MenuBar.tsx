@@ -6,7 +6,7 @@ import { UserProfile } from '@auth0/nextjs-auth0/client';
 import SocialIcon from './SocialIcon';
 
 function FineLine() {
-  return <Box style={{ borderRight: '1px solid transparent', height: 22 }}></Box>;
+  return <Box style={{ borderRight: '1px solid grey', height: 22 }}></Box>;
 }
 
 function MenuItem({ href, children }: { href: string; children: React.ReactNode }) {
@@ -17,67 +17,46 @@ function MenuItem({ href, children }: { href: string; children: React.ReactNode 
   );
 }
 
-export default function MenuBar({ user, href }: { user?: UserProfile; href?: string }) {
+export default function MenuBar({
+  user,
+  href,
+  maw = 'auto'
+}: {
+  user?: UserProfile;
+  href?: string;
+  maw?: number | string;
+}) {
   return (
     <Flex
       m={0}
-      mt={24}
+      p={10}
       align="center"
-      justify="center"
+      justify="space-evenly"
+      maw={maw}
       style={{
-        height: 77,
-        flexGrow: 1,
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        zIndex: 1,
         width: '100%',
-        padding: '0 20px'
-      }}
-      wrap="wrap">
-      <Flex
-        wrap="wrap"
-        m={0}
-        py={10}
-        pr={10}
-        align="center"
-        style={{
-          width: '100%',
-          maxWidth: 1172,
-          flexGrow: 1,
-          justifyContent: 'flex-start',
-          backgroundColor: '#1a1816',
-          borderRadius: 12
-        }}>
-        <MediaQuery smallerThan="sm" styles={{ paddingLeft: 16, gap: 16 }}>
-          <Flex align="center" pl={64} gap={96}>
-            <Box>
-              <BlyssLogotype href={href} />
-            </Box>
-            <FineLine />
-          </Flex>
-        </MediaQuery>
-        <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
-          <Flex align="center" justify="flex-start" sx={{ flexGrow: 1 }} pl={96} gap={64}>
-            <MenuItem href="/">Playground</MenuItem>
-            <MenuItem href="https://docs.blyss.dev">Docs</MenuItem>
-          </Flex>
-        </MediaQuery>
-        <MediaQuery smallerThan="sm" styles={{ gap: 16 }}>
-          <Flex align="center" justify="flex-end" style={{ flexGrow: 1 }} gap={32}>
-            <Flex gap={24}>
-              <Anchor href="https://github.com/blyssprivacy/sdk">
-                <SocialIcon kind="github" />
-              </Anchor>
-
-              <Anchor href="https://twitter.com/blyssdev">
-                <SocialIcon kind="twitter" />
-              </Anchor>
-            </Flex>
-            <ActionButton href="https://console.blyss.dev">Get an API key</ActionButton>
-          </Flex>
-        </MediaQuery>{' '}
+        backgroundColor: '#1a1816',
+        borderRadius: 12,
+        border: '1px solid #333'
+      }}>
+      <BlyssLogotype href={href} />
+      <FineLine />
+      <Flex justify="space-evenly" gap={24}>
+        <MenuItem href="/">Playground</MenuItem>
+        <MenuItem href="https://docs.blyss.dev">Docs</MenuItem>
       </Flex>
+      <FineLine />
+      <Flex gap={24}>
+        <Anchor href="https://github.com/blyssprivacy/sdk">
+          <SocialIcon kind="github" />
+        </Anchor>
+        <Anchor href="https://twitter.com/blyssdev">
+          <SocialIcon kind="twitter" />
+        </Anchor>
+      </Flex>
+      <FineLine />
+
+      <ActionButton href="https://console.blyss.dev">Get an API key</ActionButton>
     </Flex>
   );
 }

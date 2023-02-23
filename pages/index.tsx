@@ -1,5 +1,12 @@
 import { Box, Card, Center, Flex, Group, Stack, Sx, Text, Title, useMantineTheme } from '@mantine/core';
-import { IconBook, IconCoinBitcoin, IconQuestionMark, IconSquareAsterisk, IconUnlink } from '@tabler/icons-react';
+import {
+  IconBook,
+  IconCoinBitcoin,
+  IconShieldLock,
+  IconMail,
+  IconSquareAsterisk,
+  IconUnlink
+} from '@tabler/icons-react';
 import MenuBar from '../components/MenuBar';
 
 export default function SSRPage() {
@@ -15,6 +22,19 @@ export default function SSRPage() {
         .fill(0)
         .map((_, i) => <IconSquareAsterisk key={i} color={theme.colors.gray[4]} size={64} />),
       description: 'Privately check passwords against the "Have I Been Pwned?" database of breached passwords.'
+    },
+    {
+      title: 'Private inbox',
+      link: '/mailboxes',
+      target: undefined,
+      cardHeaderStyle: { backgroundImage: theme.fn.gradient({ from: 'pink.4', to: 'pink.8', deg: 45 }) } as Sx,
+      cardHeaderBody: (
+        <Flex justify="center" align="center">
+          <IconShieldLock key={0} color={theme.colors.gray[4]} size={64} />
+          <IconMail key={0} color={theme.colors.gray[4]} size={64} />
+        </Flex>
+      ),
+      description: 'Send and receive short messages or files. Retrievals are fully anonymous.'
     },
     {
       title: 'Private ENS resolver',
@@ -42,7 +62,8 @@ export default function SSRPage() {
           <IconCoinBitcoin color={theme.colors.gray[0]} size={48} />
         </Flex>
       ),
-      description: 'Privately read English Wikipedia. The articles you read are never revealed to the server.'
+      description:
+        'Check the live balance and recent transactions of any Bitcoin address. The server never sees your addresses.'
     }
   ];
 
