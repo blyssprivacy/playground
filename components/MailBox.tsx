@@ -1,5 +1,5 @@
 import { Bucket, Client } from '@blyss/sdk';
-import { Flex, Card } from '@mantine/core';
+import { Flex, Card, useMantineTheme, TextInput, Textarea, Button, Title } from '@mantine/core';
 import React, { useState } from 'react';
 
 export interface Log {
@@ -15,11 +15,11 @@ export function LogMessage({ to, isRetrieval, tookMs }: Log) {
       <div className="logline">
         {!isRetrieval ? (
           <>
-            Posted a message to mailbox {to}. {tookMsg}
+            Write: ? bytes to mailbox {to}. {tookMsg}
           </>
         ) : (
           <>
-            Privately checked mailbox {to}. {tookMsg}.
+            PrivateRead: ? bytes from mailbox {to}. {tookMsg}
           </>
         )}
       </div>
@@ -84,6 +84,33 @@ async function computeServerKey(mailbox: string): Promise<string> {
   return targetKey;
 }
 
+function MessageCard({ body }: { body: any }) {
+  const theme = useMantineTheme();
+  return (
+    <Card radius="md" h={400} w={300} style={{ border: '1px solid ' + theme.colors.blyssPink[6] }}>
+      <Flex w="100%" h="100%" direction="column" justify="space-around" ff="IBM Plex Mono" fz={16}>
+        {body}
+      </Flex>
+    </Card>
+  );
+}
+
+function MessageButton({ loading, t1, t2 }: { loading: boolean; t1: string; t2: string }) {
+  const theme = useMantineTheme();
+  return (
+    <Flex>
+      <Button
+        type="submit"
+        disabled={loading}
+        variant="gradient"
+        gradient={{ from: theme.colors.blyssPink[7], to: theme.colors.blyssPink[5], deg: 35 }}>
+        {loading ? t1 : t2}
+      </Button>
+      <div>{loading ? <div className="loader"></div> : null}</div>
+    </Flex>
+  );
+}
+
 function SendMessageCard({
   loading,
   handler
@@ -91,28 +118,27 @@ function SendMessageCard({
   loading: boolean;
   handler: (e: React.FormEvent<HTMLFormElement>) => void;
 }) {
+  const theme = useMantineTheme();
+  const body = (
+    <>
+      <Flex justify="center">
+        <Title order={2}> Send</Title>
+      </Flex>
+      <Title order={4}>📬 destination mailbox:</Title>
+      <TextInput type="text" id="to" title="up to 500 Unicode chars, enforced by truncation." required />
+      <Title order={4}>Message:</Title>
+      <Textarea
+        id="msg"
+        title="UTF8 up to 1KiB, enforced by truncation. Message will be client-side encrypted, using a key derived from the recipient's name."
+        required
+      />
+      <MessageButton loading={loading} t1="posting..." t2="post message" />
+    </>
+  );
   return (
-    <Card>
-      <form className="actioncard" onSubmit={handler}>
-        <h2>📤 Send</h2>
-        <div className="actioncard-field">
-          <h3>To:</h3>
-          <input type="text" id="to" title="up to 500 Unicode chars, enforced by truncation." required />
-        </div>
-        <div className="actioncard-field">
-          <h3>Message:</h3>
-          <textarea
-            id="msg"
-            title="UTF8 up to 1KiB, enforced by truncation. Message will be client-side encrypted, using a key derived from the recipient's name."
-            required
-          />
-        </div>
-        <div className="actioncard-buttons">
-          <button disabled={loading}>{loading ? '  sending...  ' : 'post message'}</button>
-          <div>{loading ? <div className="loader"></div> : null}</div>
-        </div>
-      </form>
-    </Card>
+    <form onSubmit={handler}>
+      <MessageCard body={body} />
+    </form>
   );
 }
 
@@ -125,36 +151,24 @@ function PrivateReceiveMessageCard({
   fetchedMessage: string;
   handler: (e: React.FormEvent<HTMLFormElement>) => void;
 }) {
+  const theme = useMantineTheme();
+  const body = (
+    <>
+      <Flex justify="center">
+        <Title order={2}>Private Retrieve</Title>
+      </Flex>
+      <Title order={4}>📫 mailbox to check:</Title>
+      <TextInput type="text" id="to" title="up to 500 Unicode chars, enforced by truncation." required />
+      <Title order={4}>Received message:</Title>
+      <Textarea id="msg" variant="unstyled" value={fetchedMessage} title="display for the fetched message." readOnly />
+      <MessageButton loading={loading} t1="fetching..." t2="fetch message" />
+    </>
+  );
+
   return (
-    <Card>
-      <form className="actioncard" onSubmit={handler}>
-        <h2>📥 Private Retrieve</h2>
-        <div className="actioncard-field">
-          <h3>Mailbox to check:</h3>
-          <input
-            type="text"
-            id="to"
-            placeholder="(recipient's name)"
-            title="up to 500 Unicode chars, enforced by truncation."
-            required
-          />
-        </div>
-        <div className="actioncard-field">
-          <h3>Received message:</h3>
-          <textarea
-            className="fetchedMessage"
-            id="msg"
-            value={fetchedMessage}
-            title="display for the fetched message."
-            readOnly
-          />
-        </div>
-        <div className="actioncard-buttons">
-          <button disabled={loading}>{loading ? 'fetching...' : 'fetch message'}</button>
-          <div>{loading ? <div className="loader"></div> : null}</div>
-        </div>
-      </form>
-    </Card>
+    <form onSubmit={handler}>
+      <MessageCard body={body} />
+    </form>
   );
 }
 
@@ -294,19 +308,17 @@ export default function App() {
   };
 
   return (
-    <Flex direction={'column'}>
-      <Flex justify={'center'} gap={20}>
+    <Flex direction={'column'} rowGap={20}>
+      <Flex w="100%" justify={'space-around'} gap={20}>
         <SendMessageCard loading={posting} handler={handleSubmit}></SendMessageCard>
         <PrivateReceiveMessageCard
           loading={loading}
           fetchedMessage={fetchedMessage}
           handler={handleFetch}></PrivateReceiveMessageCard>
       </Flex>
-      <div className="trace">
-        <div>
-          <h2>Trace</h2>
-        </div>
-        <div>
+      <Flex direction={'column'} rowGap={10}>
+        <Title order={2}>Log</Title>
+        <Flex direction={'column'} rowGap={5}>
           {trace.length > 0
             ? trace.map((t, i) => (
                 <div key={i}>
@@ -314,8 +326,8 @@ export default function App() {
                 </div>
               ))
             : null}
-        </div>
-      </div>
+        </Flex>
+      </Flex>
     </Flex>
   );
 }

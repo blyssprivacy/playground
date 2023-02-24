@@ -1,7 +1,6 @@
 import { ActionIcon, Flex } from '@mantine/core';
 import { MenuItem } from '@mantine/core/lib/Menu/MenuItem/MenuItem';
 import { IconBrandDiscord, IconBrandGithub, IconBrandTwitter } from '@tabler/icons-react';
-import ActionButton from './ActionButton';
 
 function TwitterIcon() {
   return (
