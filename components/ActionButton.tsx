@@ -1,4 +1,4 @@
-import { Anchor, Button, ButtonProps, ButtonVariant, createStyles, Group, Text, useMantineTheme } from '@mantine/core';
+import { Anchor, Button, ButtonProps, createStyles, Group, Text, useMantineTheme } from '@mantine/core';
 import Link from 'next/link';
 import { MouseEventHandler } from 'react';
 
@@ -41,7 +41,7 @@ export default function ActionButton({
   ...styles
 }: {
   children: React.ReactNode;
-  variant?: ButtonVariant;
+  variant?: ButtonProps['variant'];
   href?: string;
   invertColor?: boolean;
   dashedOutline?: boolean;

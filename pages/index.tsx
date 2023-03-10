@@ -70,7 +70,7 @@ export default function SSRPage() {
   return (
     <>
       <MenuBar href="https://blyss.dev" />
-      <Stack mt={128} fz="lg">
+      <Stack mt={128} mb={128} fz="lg">
         <Title order={1} color="white">
           Playground
         </Title>
@@ -82,7 +82,6 @@ export default function SSRPage() {
                   key={i}
                   maw={320}
                   shadow="sm"
-                  p="lg"
                   radius="md"
                   component="a"
                   href={demo.link}
