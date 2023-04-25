@@ -54,8 +54,8 @@ export default function SSRPage() {
     },
     {
       title: 'Private Bitcoin balance checker',
-      link: 'https://btc.blyss.dev',
-      target: '_blank',
+      link: '/bitcoin',
+      target: undefined,
       cardHeaderStyle: { backgroundImage: theme.fn.gradient({ from: 'teal.9', to: 'green.8', deg: 90 }) } as Sx,
       cardHeaderBody: (
         <Flex justify="center" align="center">
