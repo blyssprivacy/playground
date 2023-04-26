@@ -1,5 +1,5 @@
 import { Tooltip } from '@mantine/core';
-import { IconQuestionCircle } from '@tabler/icons-react';
+import { IconQuestionMark } from '@tabler/icons-react';
 
 export default function HelpBox({ hint }: { hint: string }) {
   return (
@@ -14,7 +14,7 @@ export default function HelpBox({ hint }: { hint: string }) {
       width={200}
       fz="sm"
       fw="normal">
-      <IconQuestionCircle color="dark.4" size={16} strokeWidth={1} />
+      <IconQuestionMark color="dark.4" size={16} strokeWidth={1} />
     </Tooltip>
   );
 }
