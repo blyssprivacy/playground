@@ -20,36 +20,46 @@ function attemptSetLocalStorage(key: string, value: string | undefined) {
 }
 
 // Only gets called only on the first check
-async function setup(apiKey: string): Promise<Bucket> {
+async function setup(apiKey: string): Promise<Bucket | null> {
   const client = new Client({
     apiKey,
     endpoint: 'https://dev2.api.blyss.dev'
   });
   const bucketName = 'global.btc-balances-v2';
   const secretSeed = attemptGetLocalStorage('blyss.bitcoin.secretSeed');
-  const bucket = await client.connect(bucketName, secretSeed);
-  attemptSetLocalStorage('blyss.bitcoin.secretSeed', bucket.toSecretSeed());
+
+  let bucket = null;
+  try {
+    bucket = await client.connect(bucketName, secretSeed);
+    attemptSetLocalStorage('blyss.bitcoin.secretSeed', bucket.toSecretSeed());
+  } catch (e) {
+    console.error(e);
+    alert('Bitcoin lookup is down for maintenance. Please try again later.');
+  }
 
   return bucket;
 }
 
-type BitcoinJSON = {
+interface BitcoinJSON {
   balance: number;
-  txns: [{ [key: string]: number }];
-};
+  txns: { height: number; amount: number }[];
+}
 
 function BitcoinLookup({ apiKey }: { apiKey: string }) {
   const [addr, setAddr] = useState('');
   const [loading, setLoading] = useState(false);
   const [setupLoading, setSetupLoading] = useState(false);
   const [didSetup, setDidSetup] = useState(false);
-  const [result, setResult] = useState<undefined | BitcoinJSON>(undefined);
+  const [result, setResult] = useState<null | undefined | BitcoinJSON>(undefined);
   const [bucketHandle, setBucketHandle] = useState<Bucket | undefined>();
 
   let setupAction = async () => {
     setSetupLoading(true);
 
     let bucket = await setup(apiKey);
+    if (bucket === null) {
+      throw new Error('Failed to setup bucket');
+    }
     let publicUUID = attemptGetLocalStorage('blyss.bitcoin.publicUUID');
     await bucket.setup(publicUUID);
     attemptSetLocalStorage('blyss.bitcoin.publicUUID', bucket.uuid);
@@ -73,9 +83,8 @@ function BitcoinLookup({ apiKey }: { apiKey: string }) {
     // const metaResult = await bucketHandle?.privateRead('meta');
     // console.log(metaResult);
 
-    const addrInfo: BitcoinJSON = await bucketHandle?.privateRead(addr);
+    const addrInfo: BitcoinJSON | null = await bucketHandle?.privateRead(addr);
     console.log(addrInfo);
-
     setResult(addrInfo);
 
     console.timeEnd('lookup');
@@ -84,26 +93,30 @@ function BitcoinLookup({ apiKey }: { apiKey: string }) {
 
   let resultMsg = null;
   if (result !== undefined) {
-    // create a table of results, showing each transaction. Each object in txns
-    // is a dictionary with exactly two keys: height and amount.
-    let txns = result.txns.map((txn, i) => {
-      let height = txn.height;
-      let amount = txn.amount;
-      return (
-        <Stack key={i} direction="horizontal" justify="space-between">
-          <Title order={4}>Height: {height}</Title>
-          <Title order={4}>Amount: {amount}</Title>
+    if (result === null) {
+      resultMsg = <Title order={3}>No data found for this address</Title>;
+    } else {
+      // create a table of results, showing each transaction. Each object in txns
+      // is a dictionary with exactly two keys: height and amount.
+      let txns = result.txns.map((txn, i) => {
+        let height = txn.height;
+        let amount = txn.amount;
+        return (
+          <Stack key={i} justify="space-between">
+            <Title order={4}>Height: {height}</Title>
+            <Title order={4}>Amount: {amount}</Title>
+          </Stack>
+        );
+      });
+
+      resultMsg = (
+        <Stack spacing="sm">
+          <Title order={3}>Balance: {result.balance}</Title>
+          <Title order={3}>Transactions:</Title>
+          <Stack spacing="sm">{txns}</Stack>
         </Stack>
       );
-    });
-
-    resultMsg = (
-      <Stack spacing="sm">
-        <Title order={3}>Balance: {result.balance}</Title>
-        <Title order={3}>Transactions:</Title>
-        <Stack spacing="sm">{txns}</Stack>
-      </Stack>
-    );
+    }
   }
 
   return (
