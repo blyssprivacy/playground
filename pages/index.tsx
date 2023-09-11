@@ -69,7 +69,7 @@ export default function SSRPage() {
 
   return (
     <>
-      <MenuBar href="https://blyss.dev" />
+      <MenuBar />
       <Stack mt={128} mb={128} fz="lg">
         <Title order={1} color="white">
           Playground

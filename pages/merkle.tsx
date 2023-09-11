@@ -13,7 +13,7 @@ export default function SSRPage() {
 
   return (
     <>
-      <MenuBar href="https://blyss.dev" />
+      <MenuBar />
       <Stack mt={64} fz="lg">
         <Stack maw={780}>
           <Title order={1} color="white">

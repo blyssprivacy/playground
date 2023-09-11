@@ -40,7 +40,6 @@ function Socials() {
 }
 
 export default function MenuBar({
-  href,
   maw = 'auto'
 }: {
   href?: string;
@@ -62,16 +61,15 @@ export default function MenuBar({
         borderRadius: 12,
         border: '1px solid #333'
       }}>
-      <BlyssLogotype href={href} />
+      <BlyssLogotype />
       <FineLine />
 
-      <MediaQuery smallerThan="xs" styles={{ display: 'none' }}>
+      <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
         <Flex justify="space-evenly" gap={24}>
-          <Playground />
           <Docs />
         </Flex>
       </MediaQuery>
-      <MediaQuery smallerThan="xs" styles={{ display: 'none' }}>
+      <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
         <Flex>
           <FineLine />
         </Flex>
@@ -110,20 +108,13 @@ export default function MenuBar({
       )}
 
 
-
-
-
-      <MediaQuery largerThan="xs" styles={{ display: 'none' }}>
+      <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
         <Menu shadow="md" width={200} opened={opened} onChange={setOpened}>
           <Menu.Target>
             <Burger opened={opened} onClick={() => setOpened(o => !o)} />
           </Menu.Target>
 
           <Menu.Dropdown>
-            {/* <Menu.Label>Application</Menu.Label> */}
-            <Menu.Item>
-              <Playground />
-            </Menu.Item>
             <Menu.Item>
               <Docs />
             </Menu.Item>

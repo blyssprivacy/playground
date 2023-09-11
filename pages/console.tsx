@@ -105,7 +105,7 @@ export default function SSRPage() {
     return (
         <Container size={1172} >
             <Flex justify="flex-start" rowGap={50} align="flex-start" direction="column" >
-                <MenuBar href="https://blyss.dev" />
+                <MenuBar />
 
                 <EnvSelector apiEndpoint={apiEndpoint} setApiEndpoint={setApiEndpoint} />
 

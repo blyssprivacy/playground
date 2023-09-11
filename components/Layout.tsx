@@ -1,8 +1,7 @@
-import React, { ReactNode } from 'react';
 import Head from 'next/head';
+import { ReactNode } from 'react';
 
-import MenuBar from './MenuBar';
-import { Box, Container, MediaQuery } from '@mantine/core';
+import { Box, MediaQuery } from '@mantine/core';
 
 const Layout = ({ children }: { children: ReactNode }) => (
   <Box>
