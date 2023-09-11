@@ -2,9 +2,10 @@ import { Anchor, Box, Burger, Button, Flex, Grid, Group, MediaQuery, Menu } from
 import ActionButton from './ActionButton';
 import BlyssLogotype from './BlyssLogotype';
 import { IconChevronDown, IconLogout } from '@tabler/icons-react';
-import { UserProfile } from '@auth0/nextjs-auth0/client';
 import SocialIcon from './SocialIcon';
 import { useState } from 'react';
+import { useUser, UserButton, SignInButton } from '@clerk/nextjs';
+import Link from 'next/link';
 
 function FineLine() {
   return <Box style={{ borderRight: '1px solid grey', height: 22 }}></Box>;
@@ -39,14 +40,14 @@ function Socials() {
 }
 
 export default function MenuBar({
-  user,
   href,
   maw = 'auto'
 }: {
-  user?: UserProfile;
   href?: string;
   maw?: number | string;
 }) {
+  const { user } = useUser();
+  const isSignedIn = Boolean(user);
   const [opened, setOpened] = useState(false);
   return (
     <Flex
@@ -94,9 +95,23 @@ export default function MenuBar({
         </Flex>
       </MediaQuery>
 
-      <ActionButton p={0} href="https://console.blyss.dev">
-        Get an API key
-      </ActionButton>
+
+      {isSignedIn ? (
+        <>
+          <Link href="/console">
+            <Button color="brand">
+              DASHBOARD
+            </Button>
+          </Link>
+          <UserButton />
+        </>
+      ) : (
+        <SignInButton redirectUrl='/console'><Button color="brand">SIGN IN</Button></SignInButton>
+      )}
+
+
+
+
 
       <MediaQuery largerThan="xs" styles={{ display: 'none' }}>
         <Menu shadow="md" width={200} opened={opened} onChange={setOpened}>

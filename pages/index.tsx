@@ -2,8 +2,8 @@ import { Box, Card, Center, Flex, Group, Stack, Sx, Text, Title, useMantineTheme
 import {
   IconBook,
   IconCoinBitcoin,
-  IconShieldLock,
   IconMail,
+  IconShieldLock,
   IconSquareAsterisk,
   IconUnlink
 } from '@tabler/icons-react';

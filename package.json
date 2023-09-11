@@ -9,8 +9,8 @@
     "test": "jest tests --coverage --maxWorkers=10"
   },
   "dependencies": {
-    "@auth0/nextjs-auth0": "^2.0.0",
     "@blyss/sdk": "^0.1.6",
+    "@clerk/nextjs": "^4.23.5",
     "@emotion/react": "^11.10.6",
     "@emotion/server": "^11.10.0",
     "@mantine/core": "^6.0.1",
