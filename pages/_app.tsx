@@ -1,20 +1,22 @@
-import React from 'react';
+import { MantineProvider } from '@mantine/core';
 import { Analytics } from '@vercel/analytics/react';
 import theme from '../components/theme';
-import { ColorScheme, MantineProvider } from '@mantine/core';
 
 import Layout from '../components/Layout';
 
-import '../styles/globals.css';
+import { ClerkProvider } from '@clerk/nextjs';
 import { AppProps } from 'next/app';
+import '../styles/globals.css';
 
 export default function App({ Component, pageProps }: AppProps<{}>) {
   return (
     <MantineProvider withGlobalStyles withNormalizeCSS theme={theme}>
-      <Layout>
-        <Component {...pageProps} />
-        <Analytics />
-      </Layout>
+      <ClerkProvider {...pageProps}>
+        <Layout>
+          <Component {...pageProps} />
+          <Analytics />
+        </Layout>
+      </ClerkProvider>
     </MantineProvider>
   );
 }
