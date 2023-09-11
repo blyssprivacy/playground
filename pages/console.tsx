@@ -1,6 +1,6 @@
-import { UserButton, useAuth } from '@clerk/nextjs';
-import { Button, Container, Flex, Select, useMantineTheme } from '@mantine/core';
-import { useEffect, useState } from 'react';
+import { useAuth } from '@clerk/nextjs';
+import { Container, Flex, Select, useMantineTheme } from '@mantine/core';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import ApiKeys, { ApiKeyData } from '../components/ApiKeys';
 import Buckets, { BucketMetadata } from '../components/Buckets';
 import MenuBar from '../components/MenuBar';
@@ -9,6 +9,29 @@ export interface ListApiKeysResponse {
     keys: ApiKeyData[] | null;
 }
 
+const BlyssEnvironments = [
+    { value: "https://alpha.api.blyss.dev", label: 'alpha' },
+    { value: "https://dev2.api.blyss.dev", label: 'dev2' },
+    { value: "https://staging.api.blyss.dev", label: 'staging' },
+    { value: "http://localhost:8000", label: 'local' }
+];
+
+interface EnvSelectorProps {
+    apiEndpoint: string;
+    setApiEndpoint: Dispatch<SetStateAction<string>>;
+}
+
+const EnvSelector = ({ apiEndpoint, setApiEndpoint }: EnvSelectorProps) => (
+    <Select
+        data={BlyssEnvironments}
+        value={apiEndpoint}
+        onChange={(value) => {
+            if (value !== null) {
+                setApiEndpoint(value);
+            }
+        }}
+    />
+);
 async function getApiKeys(apiEndpoint: string, jwt: string): Promise<ListApiKeysResponse> {
     const res = await fetch(apiEndpoint + '/list-api-keys', {
         method: 'get',
@@ -47,7 +70,7 @@ async function listBuckets(apiEndpoint: string, apiKey: string): Promise<ListBuc
 }
 
 export default function SSRPage() {
-    const [apiEndpoint, setApiEndpoint] = useState(process.env.NEXT_PUBLIC_API_ROOT);
+    const [apiEndpoint, setApiEndpoint] = useState(BlyssEnvironments[0].value);
     const [apiKeys, setApiKeys] = useState<ApiKeyData[] | null>([]);
     const [buckets, setBuckets] = useState<BucketMetadata[] | null>([]);
     const { getToken, isLoaded, isSignedIn, signOut } = useAuth();
@@ -84,19 +107,7 @@ export default function SSRPage() {
             <Flex justify="flex-start" rowGap={50} align="flex-start" direction="column" >
                 <MenuBar href="https://blyss.dev" />
 
-                <Select
-                    data={[
-                        { value: "https://dev2.api.blyss.dev", label: 'dev2' },
-                        { value: "https://staging.api.blyss.dev", label: 'staging' },
-                        { value: "http://localhost:8000", label: 'local' },
-                    ]}
-                    value={apiEndpoint}
-                    onChange={(value) => {
-                        if (value !== null) {
-                            setApiEndpoint(value);
-                        }
-                    }}
-                />
+                <EnvSelector apiEndpoint={apiEndpoint} setApiEndpoint={setApiEndpoint} />
 
                 <ApiKeys apiKeys={apiKeys} />
                 <Buckets buckets={buckets} />
@@ -104,3 +115,4 @@ export default function SSRPage() {
         </Container>
     );
 }
+
