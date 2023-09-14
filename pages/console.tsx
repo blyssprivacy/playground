@@ -1,5 +1,5 @@
 import { useAuth } from '@clerk/nextjs';
-import { Container, Flex, Select, useMantineTheme } from '@mantine/core';
+import { Container, Flex, Select, Text, Title, useMantineTheme } from '@mantine/core';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import ApiKeys, { ApiKeyData } from '../components/ApiKeys';
 import Buckets, { BucketMetadata } from '../components/Buckets';
@@ -21,17 +21,29 @@ interface EnvSelectorProps {
     setApiEndpoint: Dispatch<SetStateAction<string>>;
 }
 
-const EnvSelector = ({ apiEndpoint, setApiEndpoint }: EnvSelectorProps) => (
-    <Select
-        data={BlyssEnvironments}
-        value={apiEndpoint}
-        onChange={(value) => {
-            if (value !== null) {
-                setApiEndpoint(value);
-            }
-        }}
-    />
-);
+const EnvSelector = ({ apiEndpoint, setApiEndpoint }: EnvSelectorProps) => {
+    return (
+        <Flex direction="column" align="flex-start" gap={10}>
+
+            <Title order={2} color="white">
+                API Endpoint
+            </Title>
+            <Flex justify="flex-start" align="center" gap={10}>
+                <span>Region:</span>
+                <Select
+                    data={BlyssEnvironments}
+                    value={apiEndpoint}
+                    onChange={(value) => {
+                        if (value !== null) {
+                            setApiEndpoint(value);
+                        }
+                    }} />
+            </Flex>
+            <Text>URL: {apiEndpoint}</Text>
+        </Flex>
+
+    );
+};
 async function getApiKeys(apiEndpoint: string, jwt: string): Promise<ListApiKeysResponse> {
     const res = await fetch(apiEndpoint + '/list-api-keys', {
         method: 'get',

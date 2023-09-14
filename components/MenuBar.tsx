@@ -1,11 +1,9 @@
-import { Anchor, Box, Burger, Button, Flex, Grid, Group, MediaQuery, Menu } from '@mantine/core';
-import ActionButton from './ActionButton';
-import BlyssLogotype from './BlyssLogotype';
-import { IconChevronDown, IconLogout } from '@tabler/icons-react';
-import SocialIcon from './SocialIcon';
-import { useState } from 'react';
-import { useUser, UserButton, SignInButton } from '@clerk/nextjs';
+import { SignInButton, UserButton, useUser } from '@clerk/nextjs';
+import { Anchor, Box, Burger, Button, Flex, MediaQuery, Menu } from '@mantine/core';
 import Link from 'next/link';
+import { useState } from 'react';
+import BlyssLogotype from './BlyssLogotype';
+import SocialIcon from './SocialIcon';
 
 function FineLine() {
   return <Box style={{ borderRight: '1px solid grey', height: 22 }}></Box>;
@@ -19,9 +17,6 @@ function MenuItem({ href, children }: { href: string; children: React.ReactNode 
   );
 }
 
-function Playground() {
-  return <MenuItem href="/">Playground</MenuItem>;
-}
 function Docs() {
   return <MenuItem href="https://docs.blyss.dev">Docs</MenuItem>;
 }

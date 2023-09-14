@@ -1,4 +1,5 @@
-import { Box, Card, Center, Flex, Group, Stack, Sx, Text, Title, useMantineTheme } from '@mantine/core';
+import { SignInButton, useUser } from '@clerk/nextjs';
+import { Box, Button, Card, Center, Flex, Group, Stack, Sx, Text, Title, useMantineTheme } from '@mantine/core';
 import {
   IconBook,
   IconCoinBitcoin,
@@ -7,10 +8,14 @@ import {
   IconSquareAsterisk,
   IconUnlink
 } from '@tabler/icons-react';
+import Link from 'next/link';
 import MenuBar from '../components/MenuBar';
 
 export default function SSRPage() {
   let theme = useMantineTheme();
+
+  const { user } = useUser();
+  const isSignedIn = Boolean(user);
 
   let demos = [
     {
@@ -70,9 +75,19 @@ export default function SSRPage() {
   return (
     <>
       <MenuBar />
+
+
+
+
       <Stack mt={128} mb={128} fz="lg">
+        <Text size="xl">
+          Manage your API keys and buckets on the <Link href="/console">dashboard</Link>.
+          Or, try a public demo in your browser.
+        </Text>
+        <Box mt={32} />
+
         <Title order={1} color="white">
-          Playground
+          Live Demos
         </Title>
         <Box>
           <Flex gap={48} wrap="wrap">
