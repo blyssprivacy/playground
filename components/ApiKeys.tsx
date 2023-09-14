@@ -11,7 +11,8 @@ import {
   ActionIcon,
   Stack,
   Spoiler,
-  Flex
+  Flex,
+  Title
 } from '@mantine/core';
 import { IconCheck, IconCopy, IconQuestionCircle } from '@tabler/icons-react';
 
@@ -102,14 +103,19 @@ const colorMap: any = {
 export default function ApiKeys({ apiKeys }: { apiKeys: ApiKeyData[] | null }) {
   console.log(apiKeys);
   return (
-    <Flex gap="md" justify="flex-start" align="flex-start" direction="row" wrap="wrap">
-      {apiKeys === null ? (
-        <Text color="red.6">Sign-in failed</Text>
-      ) : (
-        apiKeys.map(a => {
-          return <ApiKey key={a.uid} data={a} />;
-        })
-      )}
+    <Flex direction="column" align="flex-start" gap={10}>
+      <Title order={2} color="white">
+        API Keys
+      </Title>
+      <Flex gap="md" justify="flex-start" align="flex-start" direction="row" wrap="wrap">
+        {apiKeys === null ? (
+          <Text color="red.6">Sign-in failed</Text>
+        ) : (
+          apiKeys.map(a => {
+            return <ApiKey key={a.uid} data={a} />;
+          })
+        )}
+      </Flex>
     </Flex>
   );
 }

@@ -69,17 +69,22 @@ function NoBuckets() {
     </Card>
   );
 }
-
 export default function Buckets({ buckets }: { buckets: BucketMetadata[] | null }) {
-  if (buckets === null || buckets.length === 0) {
-    return <NoBuckets />;
-  }
-
   return (
-    <Flex gap="md" justify="flex-start" align="flex-start" direction="row" wrap="wrap">
-      {buckets.map(b => {
-        return <Bucket key={b.name} data={b} />;
-      })}
+    <Flex direction="column" align="flex-start" gap={10}>
+      <Title order={2} color="white">
+        Buckets
+      </Title>
+      {buckets === null || buckets.length === 0 ? (
+        <NoBuckets />
+      ) : (
+        <Flex gap="md" justify="flex-start" align="flex-start" direction="row" wrap="wrap">
+          {buckets.map(b => (
+            <Bucket key={b.name} data={b} />
+          ))}
+        </Flex>
+      )}
     </Flex>
   );
 }
+

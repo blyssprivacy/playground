@@ -1,4 +1,5 @@
-import { Box, Card, Center, Flex, Group, Stack, Sx, Text, Title, useMantineTheme } from '@mantine/core';
+import { useUser } from '@clerk/nextjs';
+import { Anchor, Box, Card, Center, Flex, Group, Stack, Sx, Text, Title, useMantineTheme } from '@mantine/core';
 import {
   IconBook,
   IconCoinBitcoin,
@@ -11,6 +12,9 @@ import MenuBar from '../components/MenuBar';
 
 export default function SSRPage() {
   let theme = useMantineTheme();
+
+  const { user } = useUser();
+  const isSignedIn = Boolean(user);
 
   let demos = [
     {
@@ -70,9 +74,24 @@ export default function SSRPage() {
   return (
     <>
       <MenuBar />
+
+
+
+
       <Stack mt={128} mb={128} fz="lg">
+        <Text size="xl">
+          Blyss is a private data warehouse built on homomorphic encryption.
+          <br />
+          {/* Blyss Buckets use private information retrieval to protect all access metadata, meaning no entity can know what data you're accessing or when. */}
+          Below, we show some examples of sensitive information that Blyss can protect.
+          <br />
+          Developers can manage their API keys and hosted Buckets on the <Anchor href="/console">dashboard</Anchor>.
+
+        </Text>
+        <Box mt={32} />
+
         <Title order={1} color="white">
-          Playground
+          Live Demos
         </Title>
         <Box>
           <Flex gap={48} wrap="wrap">
