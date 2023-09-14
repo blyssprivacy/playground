@@ -80,8 +80,13 @@ export default function SSRPage() {
 
       <Stack mt={128} mb={128} fz="lg">
         <Text size="xl">
-          Manage your API keys and buckets on the <Anchor href="/console">dashboard</Anchor>.
-          Or, try a public demo in your browser.
+          Blyss is a private data warehouse built on homomorphic encryption.
+          <br />
+          {/* Blyss Buckets use private information retrieval to protect all access metadata, meaning no entity can know what data you're accessing or when. */}
+          Below, we show some examples of sensitive information that Blyss can protect.
+          <br />
+          Developers can manage their API keys and hosted Buckets on the <Anchor href="/console">dashboard</Anchor>.
+
         </Text>
         <Box mt={32} />
 
