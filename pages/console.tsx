@@ -85,18 +85,19 @@ export default function SSRPage() {
     const [apiEndpoint, setApiEndpoint] = useState(BlyssEnvironments[0].value);
     const [apiKeys, setApiKeys] = useState<ApiKeyData[] | null>([]);
     const [buckets, setBuckets] = useState<BucketMetadata[] | null>([]);
-    const { getToken, isLoaded, isSignedIn, signOut } = useAuth();
+    const { getToken } = useAuth();
+
+    const [loading, setLoading] = useState(true);
 
     // Fetch token, API keys, and buckets on mount
     useEffect(() => {
         const asyncEffect = async () => {
+            setLoading(true);
             const token = await getToken({ template: 'blyss' });
             if (!token || !apiEndpoint) {
                 return;
             }
-            console.log('token', token);
             const keysResp = await getApiKeys(apiEndpoint, token);
-            console.log('keys', keysResp);
             setApiKeys(keysResp.keys);
             // retrieve buckets for the first key, or null if no keys
             let buckets: BucketMetadata[] | null = null;
@@ -105,12 +106,11 @@ export default function SSRPage() {
                 buckets = listResp.buckets;
             }
             setBuckets(buckets);
-            console.log('buckets', buckets);
         };
         asyncEffect().catch((err) => {
             console.error(err);
-        });
-    }, [isSignedIn, apiEndpoint]);
+        }).finally(() => setLoading(false));
+    }, [apiEndpoint]);
 
     const theme = useMantineTheme();
 
@@ -121,8 +121,8 @@ export default function SSRPage() {
 
                 <EnvSelector apiEndpoint={apiEndpoint} setApiEndpoint={setApiEndpoint} />
 
-                <ApiKeys apiKeys={apiKeys} />
-                <Buckets buckets={buckets} />
+                <ApiKeys apiKeys={apiKeys} loading={loading} />
+                {/* <Buckets buckets={buckets} loading={loading} /> */}
             </Flex>
         </Container>
     );
