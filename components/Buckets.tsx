@@ -69,13 +69,13 @@ function NoBuckets() {
     </Card>
   );
 }
-export default function Buckets({ buckets }: { buckets: BucketMetadata[] | null }) {
+export default function Buckets({ buckets, loading }: { buckets: BucketMetadata[] | null; loading: boolean }) {
   return (
     <Flex direction="column" align="flex-start" gap={10}>
       <Title order={2} color="white">
         Buckets
       </Title>
-      {buckets === null || buckets.length === 0 ? (
+      {loading ? "loading..." : buckets === null || buckets.length === 0 ? (
         <NoBuckets />
       ) : (
         <Flex gap="md" justify="flex-start" align="flex-start" direction="row" wrap="wrap">

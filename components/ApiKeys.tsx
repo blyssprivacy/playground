@@ -100,14 +100,14 @@ const colorMap: any = {
   admin: 'red'
 };
 
-export default function ApiKeys({ apiKeys }: { apiKeys: ApiKeyData[] | null }) {
+export default function ApiKeys({ apiKeys, loading }: { apiKeys: ApiKeyData[] | null; loading: boolean }) {
   console.log(apiKeys);
   return (
     <Flex direction="column" align="flex-start" gap={10}>
       <Title order={2} color="white">
         API Keys
       </Title>
-      <Flex gap="md" justify="flex-start" align="flex-start" direction="row" wrap="wrap">
+      {loading ? "loading..." : <Flex gap="md" justify="flex-start" align="flex-start" direction="row" wrap="wrap">
         {apiKeys === null ? (
           <Text color="red.6">Sign-in failed</Text>
         ) : (
@@ -115,7 +115,7 @@ export default function ApiKeys({ apiKeys }: { apiKeys: ApiKeyData[] | null }) {
             return <ApiKey key={a.uid} data={a} />;
           })
         )}
-      </Flex>
+      </Flex>}
     </Flex>
   );
 }
