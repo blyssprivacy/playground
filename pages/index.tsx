@@ -1,20 +1,114 @@
 import { useUser } from '@clerk/nextjs';
-import { Anchor, Box, Card, Center, Flex, Group, Stack, Sx, Text, Title, useMantineTheme } from '@mantine/core';
+import { Anchor, Badge, Box, MediaQuery, Card, Center, Flex, Group, List, Stack, Sx, Text, Title, useMantineTheme, Space } from '@mantine/core';
 import {
   IconBook,
   IconCoinBitcoin,
   IconMail,
+  IconMessageDots,
   IconShieldLock,
   IconSquareAsterisk,
   IconUnlink
 } from '@tabler/icons-react';
 import MenuBar from '../components/MenuBar';
+import Footer from '../components/Footer';
 
-export default function SSRPage() {
+function ConfidentialAI() {
   let theme = useMantineTheme();
 
-  const { user } = useUser();
-  const isSignedIn = Boolean(user);
+  let demos = [
+    {
+      title: 'Confidential Coding Assistant',
+      link: 'https://enclave.blyss.dev',
+      target: undefined,
+      cardHeaderStyle: { backgroundImage: theme.fn.gradient({ from: 'teal.9', to: 'green.7', deg: 45 }) } as Sx,
+      cardHeaderBody: <IconMessageDots color={theme.colors.gray[4]} size={64} />,
+      description: 'Chat with a code-specialized model (CodeLlama-34B). All exchanges are totally private.'
+    },
+  ];
+  return (
+    <Stack fz='xl' id="ai">
+      <Group>
+        <Title order={1} color="white">
+          Confidential AI
+        </Title>
+        <Badge variant="filled" size="lg">
+          New
+        </Badge>
+      </Group>
+      <Text size="xl">
+        The privacy of self-hosted AI with the convenience of cloud.&nbsp;
+        <MediaQuery smallerThan="md" styles={{ display: 'none' }}>
+          <br />
+        </MediaQuery>
+        Confidential models run inside secure enclaves, which keep data encrypted even while in use.&nbsp;
+        <MediaQuery smallerThan="md" styles={{ display: 'none' }}>
+          <br />
+        </MediaQuery>
+        It is impossible for anyone - including us - to spy on or tamper with your data.&nbsp;
+        <MediaQuery smallerThan="md" styles={{ display: 'none' }}>
+          <br />
+        </MediaQuery>
+        Read more about our <Anchor href="https://blog.blyss.dev/confidential-ai-from-gpu-enclaves">strong cryptographic security</Anchor>.
+      </Text>
+      <List>
+        <List.Item>
+          <Text size="xl">
+            Publicly verifiable chain of trust, tied to the TLS certificate.
+          </Text>
+        </List.Item>
+        <List.Item>
+          <Text size="xl">
+            Models specialized for code, embeddings, and more
+          </Text>
+        </List.Item>
+        <List.Item>
+          <Text size="xl">
+            Confidential finetuning available <Anchor href="mailto:founders@blyss.dev">by request</Anchor>
+          </Text>
+        </List.Item>
+      </List>
+
+      <Space h={16} />
+
+      <MediaQuery smallerThan="md" styles={{ justifyContent: 'center' }}>
+        <Flex gap={48} wrap="wrap">
+          {demos.map((demo, i) => {
+            return (
+              <Card
+                key={i}
+                maw={320}
+                shadow="sm"
+                radius="md"
+                component="a"
+                href={demo.link}
+                target={demo.target}
+                withBorder>
+                <Card.Section>
+                  <Center h={128} sx={demo.cardHeaderStyle}>
+                    {demo.cardHeaderBody}
+                  </Center>
+                </Card.Section>
+
+                <Group position="apart" mt="md" mb="xs">
+                  <Text weight={500}>{demo.title}</Text>
+
+                </Group>
+
+                <Text size="md" color="dimmed">
+                  {demo.description}
+                </Text>
+              </Card>
+            );
+          })}
+        </Flex>
+      </MediaQuery>
+    </Stack>
+  );
+}
+
+
+function BlyssBuckets() {
+  let theme = useMantineTheme();
 
   let demos = [
     {
@@ -60,7 +154,7 @@ export default function SSRPage() {
       title: 'Private Bitcoin balance checker',
       link: 'https://btc.blyss.dev',
       target: '_blank',
-      cardHeaderStyle: { backgroundImage: theme.fn.gradient({ from: 'teal.9', to: 'green.8', deg: 90 }) } as Sx,
+      cardHeaderStyle: { backgroundImage: theme.fn.gradient({ from: 'yellow.5', to: 'orange.8', deg: 90 }) } as Sx,
       cardHeaderBody: (
         <Flex justify="center" align="center">
           <IconCoinBitcoin color={theme.colors.gray[0]} size={48} />
@@ -72,62 +166,64 @@ export default function SSRPage() {
   ];
 
   return (
+    <Stack fz='xl' id="buckets">
+      <Title order={1} color="white">
+        Blyss Buckets
+      </Title>
+      <Text>
+        A cloud key-value store with strong metadata privacy: no entity (not even us) can determine which keys a client retrieves.
+        Built on <Anchor href="https://github.com/blyssprivacy/sdk">open-source</Anchor> homomorphic encryption techniques
+        that <Anchor href="https://eprint.iacr.org/2022/368">we published</Anchor>.
+      </Text>
+
+      <Space h={16} />
+
+      <MediaQuery smallerThan="md" styles={{ justifyContent: 'center' }}>
+        <Flex gap={48} wrap="wrap">
+          {demos.map((demo, i) => {
+            return (
+              <Card
+                key={i}
+                maw={320}
+                shadow="sm"
+                radius="md"
+                component="a"
+                href={demo.link}
+                target={demo.target}
+                withBorder>
+                <Card.Section>
+                  <Center h={128} sx={demo.cardHeaderStyle}>
+                    {demo.cardHeaderBody}
+                  </Center>
+                </Card.Section>
+
+                <Group position="apart" mt="md" mb="xs">
+                  <Text weight={500}>{demo.title}</Text>
+                </Group>
+
+                <Text size="md" color="dimmed">
+                  {demo.description}
+                </Text>
+              </Card>
+            );
+          })}
+        </Flex>
+      </MediaQuery>
+    </Stack >
+  );
+}
+
+
+export default function SSRPage() {
+
+  return (
     <>
       <MenuBar />
-
-
-
-
-      <Stack mt={128} mb={128} fz="lg">
-        <Text size="xl">
-          Blyss is a private data warehouse built on homomorphic encryption.
-          <br />
-          {/* Blyss Buckets use private information retrieval to protect all access metadata, meaning no entity can know what data you're accessing or when. */}
-          Below, we show some examples of sensitive information that Blyss can protect.
-          <br />
-          Developers can manage their API keys and hosted Buckets on the <Anchor href="/console">dashboard</Anchor>.
-
-        </Text>
-        <Box mt={32} />
-
-        <Title order={1} color="white">
-          Live Demos
-        </Title>
-        <Box>
-          <Flex gap={48} wrap="wrap">
-            {demos.map((demo, i) => {
-              return (
-                <Card
-                  key={i}
-                  maw={320}
-                  shadow="sm"
-                  radius="md"
-                  component="a"
-                  href={demo.link}
-                  target={demo.target}
-                  withBorder>
-                  <Card.Section>
-                    <Center h={128} sx={demo.cardHeaderStyle}>
-                      {demo.cardHeaderBody}
-                    </Center>
-                  </Card.Section>
-
-                  <Group position="apart" mt="md" mb="xs">
-                    <Text weight={500}>{demo.title}</Text>
-                    {/* <Badge color="green" variant="dot">
-                      Live
-                    </Badge> */}
-                  </Group>
-
-                  <Text size="md" color="dimmed">
-                    {demo.description}
-                  </Text>
-                </Card>
-              );
-            })}
-          </Flex>
-        </Box>
-      </Stack>
+      <Space h="5vh" />
+      <ConfidentialAI />
+      <Space h="10vh" />
+      <BlyssBuckets />
+      <Footer />
     </>
   );
 }
