@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { ReactNode } from 'react';
 
-import { Box, MediaQuery } from '@mantine/core';
+import { Box, Flex, MediaQuery } from '@mantine/core';
 
 const Layout = ({ children }: { children: ReactNode }) => (
   <Box>
@@ -27,7 +27,10 @@ const Layout = ({ children }: { children: ReactNode }) => (
               top: 0,
               left: 0
             }}></Box>
-          <Box sx={{ maxWidth: 1172, paddingTop: 20, margin: 'auto' }}>{children}</Box>
+
+          <Flex direction="row" justify={"center"}>
+            <Box sx={{ maxWidth: 1200, width: '90%', paddingTop: '3vh' }}>{children}</Box>
+          </Flex>
         </Box>
       </MediaQuery>
     </Box>

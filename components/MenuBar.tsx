@@ -17,9 +17,30 @@ function MenuItem({ href, children }: { href: string; children: React.ReactNode 
   );
 }
 
-function Docs() {
-  return <MenuItem href="https://docs.blyss.dev">Docs</MenuItem>;
+function Buckets() {
+  return (<MenuItem href="/#buckets">Buckets</MenuItem>);
 }
+
+function ConfidentialAI() {
+  return (<MenuItem href="/#ai">Confidential AI</MenuItem>);
+}
+
+function Blog() {
+  return (<MenuItem href="https://blog.blyss.dev">Blog</MenuItem>);
+}
+
+function SelectiveLine({ breakpoint }: { breakpoint: string }) {
+  return (
+    <>
+      <MediaQuery smallerThan={breakpoint} styles={{ display: 'none' }}>
+        <Flex>
+          <FineLine />
+        </Flex>
+      </MediaQuery>
+    </>
+  );
+}
+
 
 function Socials() {
   return (
@@ -46,64 +67,54 @@ export default function MenuBar({
   return (
     <Flex
       m={0}
-      p={10}
+      p={"10px 5%"}
       align="center"
-      justify="space-evenly"
+      justify="space-between"
       maw={maw}
       style={{
         width: '100%',
         backgroundColor: '#1a1816',
         borderRadius: 12,
-        border: '1px solid #333'
+        border: '1px solid #333',
+        marginBottom: "5vh"
       }}>
       <BlyssLogotype />
-      <FineLine />
-
-      <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
-        <Flex justify="space-evenly" gap={24}>
-          <Docs />
-        </Flex>
-      </MediaQuery>
-      <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
-        <Flex>
-          <FineLine />
-        </Flex>
-      </MediaQuery>
+      <SelectiveLine breakpoint="md" />
 
       <MediaQuery smallerThan="md" styles={{ display: 'none' }}>
-        {/* TODO: replace with Socials component, but idk how to passthrough the styling from MediaQuery */}
-        <Flex gap={24}>
-          <Anchor href="https://github.com/blyssprivacy/sdk">
-            <SocialIcon kind="github" />
-          </Anchor>
-          <Anchor href="https://twitter.com/blyssdev">
-            <SocialIcon kind="twitter" />
-          </Anchor>
+        <Flex justify="space-between" gap={48}>
+          <ConfidentialAI />
+          <Buckets />
         </Flex>
       </MediaQuery>
 
-      <MediaQuery smallerThan="md" styles={{ display: 'none' }}>
-        <Flex>
-          <FineLine />
+      <SelectiveLine breakpoint="md" />
+
+      <MediaQuery smallerThan="xl" styles={{ display: 'none' }}>
+        <Flex justify="space-between" gap={48}>
+          <Blog />
+          <Socials />
         </Flex>
       </MediaQuery>
 
+      <SelectiveLine breakpoint="xl" />
 
+      <Flex gap={"10%"}>
       {isSignedIn ? (
-        <>
+          <>
           <Link href="/console">
-            <Button color="brand">
+              <Button color="brand" fz="sm">
               DASHBOARD
             </Button>
           </Link>
           <UserButton />
-        </>
+          </>
       ) : (
         <SignInButton redirectUrl='/console'><Button color="brand">SIGN IN</Button></SignInButton>
       )}
 
 
-      <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
+        <MediaQuery largerThan="md" styles={{ display: 'none' }}>
         <Menu shadow="md" width={200} opened={opened} onChange={setOpened}>
           <Menu.Target>
             <Burger opened={opened} onClick={() => setOpened(o => !o)} />
@@ -111,7 +122,10 @@ export default function MenuBar({
 
           <Menu.Dropdown>
             <Menu.Item>
-              <Docs />
+              <ConfidentialAI />
+            </Menu.Item>
+            <Menu.Item>
+              <Buckets />
             </Menu.Item>
 
             <Menu.Divider />
@@ -121,6 +135,7 @@ export default function MenuBar({
           </Menu.Dropdown>
         </Menu>
       </MediaQuery>
+      </Flex>
     </Flex>
   );
 }
