@@ -1,5 +1,21 @@
-import { useUser } from '@clerk/nextjs';
-import { Anchor, Badge, Box, MediaQuery, Card, Center, Flex, Group, List, Stack, Sx, Text, Title, useMantineTheme, Space, Button } from '@mantine/core';
+import {
+  Anchor,
+  Badge,
+  Box,
+  MediaQuery,
+  Card,
+  Center,
+  Flex,
+  Group,
+  List,
+  Stack,
+  Sx,
+  Text,
+  Title,
+  useMantineTheme,
+  Space,
+  Button
+} from '@mantine/core';
 import {
   IconBook,
   IconCoinBitcoin,
@@ -38,8 +54,6 @@ function SelectiveBr() {
   );
 }
 
-
-
 function ConfidentialAI() {
   let theme = useMantineTheme();
 
@@ -51,10 +65,10 @@ function ConfidentialAI() {
       cardHeaderStyle: { backgroundImage: theme.fn.gradient({ from: 'teal.9', to: 'green.7', deg: 45 }) } as Sx,
       cardHeaderBody: <IconMessageDots color={theme.colors.gray[4]} size={64} />,
       description: 'Chat with a code-specialized model (CodeLlama-34B). All exchanges are totally private.'
-    },
+    }
   ];
   return (
-    <Stack fz='xl' id="ai">
+    <Stack fz="xl" id="ai">
       <Group>
         <Title order={1} color="white">
           Confidential AI
@@ -73,26 +87,20 @@ function ConfidentialAI() {
         <SelectiveBr />
         It is impossible for anyone - including us - to spy on or tamper with your data.
         <SelectiveBr />
-        Read more about our <Anchor href="https://blog.blyss.dev/confidential-ai-from-gpu-enclaves">strong cryptographic security</Anchor>.
+        Read more about our{' '}
+        <Anchor href="https://blog.blyss.dev/confidential-ai-from-gpu-enclaves">strong cryptographic security</Anchor>.
       </Text>
       <List>
         <List.Item>
-          <Text size="xl">
-            Publicly verifiable chain of trust, tied to the TLS certificate
-          </Text>
+          <Text size="xl">Publicly verifiable chain of trust, tied to the TLS certificate</Text>
         </List.Item>
         <List.Item>
-          <Text size="xl">
-            Models specialized for code, embeddings, and more
-          </Text>
+          <Text size="xl">Models specialized for code, embeddings, and more</Text>
         </List.Item>
         <List.Item>
-          <Text size="xl">
-            Confidential finetuning option - we train a model for you, and never see your data
-          </Text>
+          <Text size="xl">Confidential finetuning option - we train a model for you, and never see your data</Text>
         </List.Item>
       </List>
-
       <Box>
         <Link href="https://calendar.app.google/n1zVWeURhzx21DJH6">
           <Button color="brand" variant="filled">
@@ -101,41 +109,38 @@ function ConfidentialAI() {
         </Link>
       </Box>
       or try a free public demo:
+      <Flex gap={48} wrap="wrap">
+        {demos.map((demo, i) => {
+          return (
+            <Card
+              key={i}
+              maw={320}
+              shadow="sm"
+              radius="md"
+              component="a"
+              href={demo.link}
+              target={demo.target}
+              withBorder>
+              <Card.Section>
+                <Center h={128} sx={demo.cardHeaderStyle}>
+                  {demo.cardHeaderBody}
+                </Center>
+              </Card.Section>
 
-        <Flex gap={48} wrap="wrap">
-          {demos.map((demo, i) => {
-            return (
-              <Card
-                key={i}
-                maw={320}
-                shadow="sm"
-                radius="md"
-                component="a"
-                href={demo.link}
-                target={demo.target}
-                withBorder>
-                <Card.Section>
-                  <Center h={128} sx={demo.cardHeaderStyle}>
-                    {demo.cardHeaderBody}
-                  </Center>
-                </Card.Section>
+              <Group position="apart" mt="md" mb="xs">
+                <Text weight={500}>{demo.title}</Text>
+              </Group>
 
-                <Group position="apart" mt="md" mb="xs">
-                  <Text weight={500}>{demo.title}</Text>
-
-                </Group>
-
-                <Text size="md" color="dimmed">
-                  {demo.description}
-                </Text>
-              </Card>
-            );
-          })}
+              <Text size="md" color="dimmed">
+                {demo.description}
+              </Text>
+            </Card>
+          );
+        })}
       </Flex>
     </Stack>
   );
 }
-
 
 function BlyssBuckets() {
   let theme = useMantineTheme();
@@ -196,17 +201,17 @@ function BlyssBuckets() {
   ];
 
   return (
-    <Stack fz='xl' id="buckets">
+    <Stack fz="xl" id="buckets">
       <Title order={1} color="white">
         Blyss Buckets
       </Title>
       <Text>
-        A cloud key-value store with strong metadata privacy: no entity (not even us) can determine which keys a client retrieves.
+        A cloud key-value store with strong metadata privacy: no entity (not even us) can determine which keys a client
+        retrieves.
         <SelectiveBr />
-        Built on <Anchor href="https://github.com/blyssprivacy/sdk">open-source</Anchor> homomorphic encryption techniques
-        that <Anchor href="https://eprint.iacr.org/2022/368">we published</Anchor>.
+        Built on <Anchor href="https://github.com/blyssprivacy/sdk">open-source</Anchor> homomorphic encryption
+        techniques that <Anchor href="https://eprint.iacr.org/2022/368">we published</Anchor>.
       </Text>
-
 
       <Flex direction="row" align="flex-start" gap={10}>
         <RenderButton link="https://docs.blyss.dev" text="Docs" />
@@ -216,42 +221,40 @@ function BlyssBuckets() {
 
       <Space h={16} />
 
-        <Flex gap={48} wrap="wrap">
-          {demos.map((demo, i) => {
-            return (
-              <Card
-                key={i}
-                maw={320}
-                shadow="sm"
-                radius="md"
-                component="a"
-                href={demo.link}
-                target={demo.target}
-                withBorder>
-                <Card.Section>
-                  <Center h={128} sx={demo.cardHeaderStyle}>
-                    {demo.cardHeaderBody}
-                  </Center>
-                </Card.Section>
+      <Flex gap={48} wrap="wrap">
+        {demos.map((demo, i) => {
+          return (
+            <Card
+              key={i}
+              maw={320}
+              shadow="sm"
+              radius="md"
+              component="a"
+              href={demo.link}
+              target={demo.target}
+              withBorder>
+              <Card.Section>
+                <Center h={128} sx={demo.cardHeaderStyle}>
+                  {demo.cardHeaderBody}
+                </Center>
+              </Card.Section>
 
-                <Group position="apart" mt="md" mb="xs">
-                  <Text weight={500}>{demo.title}</Text>
-                </Group>
+              <Group position="apart" mt="md" mb="xs">
+                <Text weight={500}>{demo.title}</Text>
+              </Group>
 
-                <Text size="md" color="dimmed">
-                  {demo.description}
-                </Text>
-              </Card>
-            );
-          })}
+              <Text size="md" color="dimmed">
+                {demo.description}
+              </Text>
+            </Card>
+          );
+        })}
       </Flex>
-    </Stack >
+    </Stack>
   );
 }
 
-
 export default function SSRPage() {
-
   return (
     <>
       <MenuBar />

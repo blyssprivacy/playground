@@ -2,7 +2,6 @@ import { Anchor, Box, Text, Flex } from '@mantine/core';
 import BlyssLogotype from './BlyssLogotype';
 import SocialIcon from './SocialIcon';
 
-
 function Socials() {
   return (
     <Flex justify="center" gap={24}>
@@ -23,10 +22,7 @@ export default function Footer() {
       <Flex direction="row" justify="space-between" align="flex-start">
         <Flex direction="column" gap="2vh">
           <BlyssLogotype />
-          <Text size="lg">
-            Confidential AI for everyone.
-          </Text>
-
+          <Text size="lg">Confidential AI for everyone.</Text>
         </Flex>
         <Flex direction="column" gap="2vh">
           <Text size="lg" style={{ textAlign: 'right' }}>

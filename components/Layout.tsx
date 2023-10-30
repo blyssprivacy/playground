@@ -28,7 +28,7 @@ const Layout = ({ children }: { children: ReactNode }) => (
               left: 0
             }}></Box>
 
-          <Flex direction="row" justify={"center"}>
+          <Flex direction="row" justify={'center'}>
             <Box sx={{ maxWidth: 1200, width: '90%', paddingTop: '3vh' }}>{children}</Box>
           </Flex>
         </Box>

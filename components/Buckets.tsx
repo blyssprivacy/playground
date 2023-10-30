@@ -75,7 +75,9 @@ export default function Buckets({ buckets, loading }: { buckets: BucketMetadata[
       <Title order={2} color="white">
         Buckets
       </Title>
-      {loading ? "loading..." : buckets === null || buckets.length === 0 ? (
+      {loading ? (
+        'loading...'
+      ) : buckets === null || buckets.length === 0 ? (
         <NoBuckets />
       ) : (
         <Flex gap="md" justify="flex-start" align="flex-start" direction="row" wrap="wrap">
@@ -87,4 +89,3 @@ export default function Buckets({ buckets, loading }: { buckets: BucketMetadata[
     </Flex>
   );
 }
-

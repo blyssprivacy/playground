@@ -107,15 +107,19 @@ export default function ApiKeys({ apiKeys, loading }: { apiKeys: ApiKeyData[] | 
       <Title order={2} color="white">
         API Keys
       </Title>
-      {loading ? "loading..." : <Flex gap="md" justify="flex-start" align="flex-start" direction="row" wrap="wrap">
-        {apiKeys === null ? (
-          <Text color="red.6">Sign-in failed</Text>
-        ) : (
-          apiKeys.map(a => {
-            return <ApiKey key={a.uid} data={a} />;
-          })
-        )}
-      </Flex>}
+      {loading ? (
+        'loading...'
+      ) : (
+        <Flex gap="md" justify="flex-start" align="flex-start" direction="row" wrap="wrap">
+          {apiKeys === null ? (
+            <Text color="red.6">Sign-in failed</Text>
+          ) : (
+            apiKeys.map(a => {
+              return <ApiKey key={a.uid} data={a} />;
+            })
+          )}
+        </Flex>
+      )}
     </Flex>
   );
 }
