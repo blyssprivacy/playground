@@ -255,7 +255,6 @@ export default function SSRPage() {
   return (
     <>
       <MenuBar />
-      <Space h="5vh" />
       <ConfidentialAI />
       <Space h="10vh" />
       <BlyssBuckets />

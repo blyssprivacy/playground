@@ -1,9 +1,10 @@
-import { useAuth } from '@clerk/nextjs';
-import { Container, Flex, Select, Text, Title, useMantineTheme } from '@mantine/core';
+import { useAuth, SignedIn, SignedOut, RedirectToSignIn } from '@clerk/nextjs';
+import { ActionIcon, Card, Container, CopyButton, Flex, Group, Select, Stack, Text, Title, Tooltip, useMantineTheme } from '@mantine/core';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import ApiKeys, { ApiKeyData } from '../components/ApiKeys';
 import Buckets, { BucketMetadata } from '../components/Buckets';
 import MenuBar from '../components/MenuBar';
+import { IconCheck, IconCopy } from '@tabler/icons-react';
 
 export interface ListApiKeysResponse {
     keys: ApiKeyData[] | null;
@@ -39,11 +40,36 @@ const EnvSelector = ({ apiEndpoint, setApiEndpoint }: EnvSelectorProps) => {
                         }
                     }} />
             </Flex>
-            <Text>URL: {apiEndpoint}</Text>
+            <Text>URL:</Text>
+            <BucketEnv env={apiEndpoint} />
         </Flex>
 
     );
 };
+
+function BucketEnv({ env }: { env: string }) {
+    return (
+        <Card shadow="sm" p="md" radius="md" withBorder w={400}>
+            <Stack spacing="xl" p={0}>
+                <Group position="apart">
+                    <Text weight={500} ff="'Source Code Pro', monospace" fz={16}>
+                        {env}
+                    </Text>
+                    <CopyButton value={env!} timeout={2000}>
+                        {({ copied, copy }) => (
+                            <Tooltip label={copied ? 'Copied' : 'Copy'} color={copied ? 'teal' : 'gray'} position="left" withArrow>
+                                <ActionIcon color={copied ? 'teal' : 'gray'} onClick={copy}>
+                                    {copied ? <IconCheck size={16} strokeWidth={1} /> : <IconCopy size={16} strokeWidth={1} />}
+                                </ActionIcon>
+                            </Tooltip>
+                        )}
+                    </CopyButton>
+                </Group>
+            </Stack>
+        </Card>
+    );
+}
+
 async function getApiKeys(apiEndpoint: string, jwt: string): Promise<ListApiKeysResponse> {
     const res = await fetch(apiEndpoint + '/list-api-keys', {
         method: 'get',
@@ -112,10 +138,9 @@ export default function SSRPage() {
         }).finally(() => setLoading(false));
     }, [apiEndpoint]);
 
-    const theme = useMantineTheme();
-
     return (
-        <Container size={1172} >
+        <Container size={"100%"} >
+            <SignedIn>
             <Flex justify="flex-start" rowGap={50} align="flex-start" direction="column" >
                 <MenuBar />
 
@@ -124,6 +149,10 @@ export default function SSRPage() {
                 <ApiKeys apiKeys={apiKeys} loading={loading} />
                 {/* <Buckets buckets={buckets} loading={loading} /> */}
             </Flex>
+            </SignedIn>
+            <SignedOut>
+                <RedirectToSignIn />
+            </SignedOut>
         </Container>
     );
 }

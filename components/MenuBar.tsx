@@ -67,27 +67,28 @@ export default function MenuBar({
   return (
     <Flex
       m={0}
-      p={10}
+      p={"10px 5%"}
       align="center"
-      justify="space-evenly"
+      justify="space-between"
       maw={maw}
       style={{
         width: '100%',
         backgroundColor: '#1a1816',
         borderRadius: 12,
-        border: '1px solid #333'
+        border: '1px solid #333',
+        marginBottom: "5vh"
       }}>
       <BlyssLogotype />
-      <FineLine />
+      <SelectiveLine breakpoint="md" />
 
-      <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
+      <MediaQuery smallerThan="md" styles={{ display: 'none' }}>
         <Flex justify="space-between" gap={48}>
           <ConfidentialAI />
           <Buckets />
         </Flex>
       </MediaQuery>
 
-      <SelectiveLine breakpoint="sm" />
+      <SelectiveLine breakpoint="md" />
 
       <MediaQuery smallerThan="xl" styles={{ display: 'none' }}>
         <Flex justify="space-between" gap={48}>
@@ -98,21 +99,22 @@ export default function MenuBar({
 
       <SelectiveLine breakpoint="xl" />
 
+      <Flex gap={"10%"}>
       {isSignedIn ? (
-        <>
+          <>
           <Link href="/console">
-            <Button color="brand">
+              <Button color="brand" fz="sm">
               DASHBOARD
             </Button>
           </Link>
           <UserButton />
-        </>
+          </>
       ) : (
         <SignInButton redirectUrl='/console'><Button color="brand">SIGN IN</Button></SignInButton>
       )}
 
 
-      <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
+        <MediaQuery largerThan="md" styles={{ display: 'none' }}>
         <Menu shadow="md" width={200} opened={opened} onChange={setOpened}>
           <Menu.Target>
             <Burger opened={opened} onClick={() => setOpened(o => !o)} />
@@ -133,6 +135,7 @@ export default function MenuBar({
           </Menu.Dropdown>
         </Menu>
       </MediaQuery>
+      </Flex>
     </Flex>
   );
 }
