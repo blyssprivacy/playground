@@ -17,9 +17,30 @@ function MenuItem({ href, children }: { href: string; children: React.ReactNode 
   );
 }
 
-function Docs() {
-  return <MenuItem href="https://docs.blyss.dev">Docs</MenuItem>;
+function Buckets() {
+  return (<MenuItem href="/#buckets">Buckets</MenuItem>);
 }
+
+function ConfidentialAI() {
+  return (<MenuItem href="/#ai">Confidential AI</MenuItem>);
+}
+
+function Blog() {
+  return (<MenuItem href="https://blog.blyss.dev">Blog</MenuItem>);
+}
+
+function SelectiveLine({ breakpoint }: { breakpoint: string }) {
+  return (
+    <>
+      <MediaQuery smallerThan={breakpoint} styles={{ display: 'none' }}>
+        <Flex>
+          <FineLine />
+        </Flex>
+      </MediaQuery>
+    </>
+  );
+}
+
 
 function Socials() {
   return (
@@ -60,34 +81,22 @@ export default function MenuBar({
       <FineLine />
 
       <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
-        <Flex justify="space-evenly" gap={24}>
-          <Docs />
-        </Flex>
-      </MediaQuery>
-      <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
-        <Flex>
-          <FineLine />
+        <Flex justify="space-between" gap={48}>
+          <ConfidentialAI />
+          <Buckets />
         </Flex>
       </MediaQuery>
 
-      <MediaQuery smallerThan="md" styles={{ display: 'none' }}>
-        {/* TODO: replace with Socials component, but idk how to passthrough the styling from MediaQuery */}
-        <Flex gap={24}>
-          <Anchor href="https://github.com/blyssprivacy/sdk">
-            <SocialIcon kind="github" />
-          </Anchor>
-          <Anchor href="https://twitter.com/blyssdev">
-            <SocialIcon kind="twitter" />
-          </Anchor>
+      <SelectiveLine breakpoint="sm" />
+
+      <MediaQuery smallerThan="xl" styles={{ display: 'none' }}>
+        <Flex justify="space-between" gap={48}>
+          <Blog />
+          <Socials />
         </Flex>
       </MediaQuery>
 
-      <MediaQuery smallerThan="md" styles={{ display: 'none' }}>
-        <Flex>
-          <FineLine />
-        </Flex>
-      </MediaQuery>
-
+      <SelectiveLine breakpoint="xl" />
 
       {isSignedIn ? (
         <>
@@ -111,7 +120,10 @@ export default function MenuBar({
 
           <Menu.Dropdown>
             <Menu.Item>
-              <Docs />
+              <ConfidentialAI />
+            </Menu.Item>
+            <Menu.Item>
+              <Buckets />
             </Menu.Item>
 
             <Menu.Divider />

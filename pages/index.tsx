@@ -1,5 +1,5 @@
 import { useUser } from '@clerk/nextjs';
-import { Anchor, Badge, Box, MediaQuery, Card, Center, Flex, Group, List, Stack, Sx, Text, Title, useMantineTheme, Space } from '@mantine/core';
+import { Anchor, Badge, Box, MediaQuery, Card, Center, Flex, Group, List, Stack, Sx, Text, Title, useMantineTheme, Space, Button } from '@mantine/core';
 import {
   IconBook,
   IconCoinBitcoin,
@@ -11,6 +11,34 @@ import {
 } from '@tabler/icons-react';
 import MenuBar from '../components/MenuBar';
 import Footer from '../components/Footer';
+import Link from 'next/link';
+
+interface RenderButtonProps {
+  link: string;
+  text: string;
+}
+function RenderButton({ link, text }: RenderButtonProps) {
+  return (
+    <Link href={link}>
+      <Button color="brand" variant="outline">
+        {text}
+      </Button>
+    </Link>
+  );
+}
+
+function SelectiveBr() {
+  return (
+    <>
+      &nbsp;
+      <MediaQuery smallerThan="md" styles={{ display: 'none' }}>
+        <br />
+      </MediaQuery>
+    </>
+  );
+}
+
+
 
 function ConfidentialAI() {
   let theme = useMantineTheme();
@@ -36,24 +64,21 @@ function ConfidentialAI() {
         </Badge>
       </Group>
       <Text size="xl">
-        The privacy of self-hosted AI with the convenience of cloud.&nbsp;
-        <MediaQuery smallerThan="md" styles={{ display: 'none' }}>
-          <br />
-        </MediaQuery>
-        Confidential models run inside secure enclaves, which keep data encrypted even while in use.&nbsp;
-        <MediaQuery smallerThan="md" styles={{ display: 'none' }}>
-          <br />
-        </MediaQuery>
-        It is impossible for anyone - including us - to spy on or tamper with your data.&nbsp;
-        <MediaQuery smallerThan="md" styles={{ display: 'none' }}>
-          <br />
-        </MediaQuery>
+        The privacy of self-hosted AI with the convenience of cloud.
+        <SelectiveBr />
+        Designed for the data you can't afford to leak.
+      </Text>
+      <Text size="xl">
+        Confidential models run inside secure enclaves, which keep data encrypted even while in use.
+        <SelectiveBr />
+        It is impossible for anyone - including us - to spy on or tamper with your data.
+        <SelectiveBr />
         Read more about our <Anchor href="https://blog.blyss.dev/confidential-ai-from-gpu-enclaves">strong cryptographic security</Anchor>.
       </Text>
       <List>
         <List.Item>
           <Text size="xl">
-            Publicly verifiable chain of trust, tied to the TLS certificate.
+            Publicly verifiable chain of trust, tied to the TLS certificate
           </Text>
         </List.Item>
         <List.Item>
@@ -63,14 +88,20 @@ function ConfidentialAI() {
         </List.Item>
         <List.Item>
           <Text size="xl">
-            Confidential finetuning available <Anchor href="mailto:founders@blyss.dev">by request</Anchor>
+            Confidential finetuning option - we train a model for you, and never see your data
           </Text>
         </List.Item>
       </List>
 
-      <Space h={16} />
+      <Box>
+        <Link href="https://calendar.app.google/n1zVWeURhzx21DJH6">
+          <Button color="brand" variant="filled">
+            Book a call →
+          </Button>
+        </Link>
+      </Box>
+      or try a free public demo:
 
-      <MediaQuery smallerThan="md" styles={{ justifyContent: 'center' }}>
         <Flex gap={48} wrap="wrap">
           {demos.map((demo, i) => {
             return (
@@ -100,8 +131,7 @@ function ConfidentialAI() {
               </Card>
             );
           })}
-        </Flex>
-      </MediaQuery>
+      </Flex>
     </Stack>
   );
 }
@@ -172,13 +202,20 @@ function BlyssBuckets() {
       </Title>
       <Text>
         A cloud key-value store with strong metadata privacy: no entity (not even us) can determine which keys a client retrieves.
+        <SelectiveBr />
         Built on <Anchor href="https://github.com/blyssprivacy/sdk">open-source</Anchor> homomorphic encryption techniques
         that <Anchor href="https://eprint.iacr.org/2022/368">we published</Anchor>.
       </Text>
 
+
+      <Flex direction="row" align="flex-start" gap={10}>
+        <RenderButton link="https://docs.blyss.dev" text="Docs" />
+        <RenderButton link="https://github.com/blyssprivacy/sdk#quick-start-local" text="Quick Start" />
+        <RenderButton link="/console" text="API Dashboard" />
+      </Flex>
+
       <Space h={16} />
 
-      <MediaQuery smallerThan="md" styles={{ justifyContent: 'center' }}>
         <Flex gap={48} wrap="wrap">
           {demos.map((demo, i) => {
             return (
@@ -207,8 +244,7 @@ function BlyssBuckets() {
               </Card>
             );
           })}
-        </Flex>
-      </MediaQuery>
+      </Flex>
     </Stack >
   );
 }
@@ -223,6 +259,7 @@ export default function SSRPage() {
       <ConfidentialAI />
       <Space h="10vh" />
       <BlyssBuckets />
+      <Space h="10vh" />
       <Footer />
     </>
   );
