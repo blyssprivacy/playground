@@ -55,9 +55,9 @@ function Socials() {
 }
 
 export default function MenuBar({ maw = 'auto' }: { href?: string; maw?: number | string }) {
-  const { user } = useUser();
-  const isSignedIn = Boolean(user);
+  const { isSignedIn, user, isLoaded } = useUser();
   const [opened, setOpened] = useState(false);
+
   return (
     <Flex
       m={0}
@@ -93,20 +93,34 @@ export default function MenuBar({ maw = 'auto' }: { href?: string; maw?: number 
 
       <SelectiveLine breakpoint="xl" />
 
-      <Flex gap={'10%'}>
-        {isSignedIn ? (
-          <>
-            <Link href="/console">
-              <Button color="brand" fz="sm">
-                DASHBOARD
+      <Flex gap={'10%'} align="center" miw={200} justify="flex-end">
+        {isLoaded ? (
+          isSignedIn ? (
+            <Flex gap={8} align="center" justify="flex-end" sx={{ position: 'relative' }}>
+              <Box>
+                <Link href="/console">
+                  <Button color="brand" fz="sm" w={100}>
+                    CONSOLE
+                  </Button>
+                </Link>
+              </Box>
+              <MediaQuery largerThan="md" styles={{ position: 'absolute', right: -40 }}>
+                <Box>
+                  <UserButton />
+                </Box>
+              </MediaQuery>
+            </Flex>
+          ) : (
+            <SignInButton redirectUrl="/console">
+              <Button w={100} color="brand">
+                SIGN IN
               </Button>
-            </Link>
-            <UserButton />
-          </>
+            </SignInButton>
+          )
         ) : (
-          <SignInButton redirectUrl="/console">
-            <Button color="brand">SIGN IN</Button>
-          </SignInButton>
+          <Button w={100} color="brand">
+            SIGN IN
+          </Button>
         )}
 
         <MediaQuery largerThan="md" styles={{ display: 'none' }}>

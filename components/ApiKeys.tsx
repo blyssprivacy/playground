@@ -14,7 +14,7 @@ import {
   Flex,
   Title
 } from '@mantine/core';
-import { IconCheck, IconCopy, IconQuestionCircle } from '@tabler/icons-react';
+import { IconCheck, IconCopy } from '@tabler/icons-react';
 
 export interface Permission {
   bucket_name: string;

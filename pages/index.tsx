@@ -163,8 +163,8 @@ function BlyssBuckets() {
       cardHeaderStyle: { backgroundImage: theme.fn.gradient({ from: 'pink.4', to: 'pink.8', deg: 45 }) } as Sx,
       cardHeaderBody: (
         <Flex justify="center" align="center">
-          <IconShieldLock key={0} color={theme.colors.gray[4]} size={64} />
-          <IconMail key={0} color={theme.colors.gray[4]} size={64} />
+          <IconShieldLock color={theme.colors.gray[4]} size={64} />
+          <IconMail color={theme.colors.gray[4]} size={64} />
         </Flex>
       ),
       description: 'Send and receive short messages or files. Retrievals are fully anonymous.'

@@ -18,7 +18,6 @@ import {
   Center,
   Anchor
 } from '@mantine/core';
-import { IconCheck, IconCopy, IconQuestionCircle } from '@tabler/icons-react';
 import { ReactNode } from 'react';
 import HelpBox from './HelpBox';
 

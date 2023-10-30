@@ -1,5 +1,9 @@
 import { MantineThemeOverride } from '@mantine/core';
 
+import { IBM_Plex_Sans } from 'next/font/google';
+
+const ibm_plex_sans = IBM_Plex_Sans({ subsets: ['latin', 'latin-ext'], weight: ['300', '400', '500', '600'] });
+
 const theme: MantineThemeOverride = {
   primaryColor: 'blyssPink',
   colorScheme: 'dark',
@@ -36,10 +40,10 @@ const theme: MantineThemeOverride = {
     xl: '5px 5px 3px rgba(0, 0, 0, .25)'
   },
 
-  fontFamily: "'IBM Plex Sans', sans-serif",
+  fontFamily: ibm_plex_sans.style.fontFamily,
 
   headings: {
-    fontFamily: "'IBM Plex Sans', sans-serif"
+    fontFamily: ibm_plex_sans.style.fontFamily
   }
 };
 
