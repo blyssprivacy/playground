@@ -12,7 +12,8 @@ import {
   Stack,
   Spoiler,
   Flex,
-  Title
+  Title,
+  MediaQuery
 } from '@mantine/core';
 import { IconCheck, IconCopy } from '@tabler/icons-react';
 
@@ -54,43 +55,50 @@ function Permissions({ permissions }: { permissions?: Permission[] }) {
 
 function ApiKey({ data }: { data: ApiKeyData }) {
   return (
-    <Card shadow="sm" p="md" radius="md" withBorder w={400}>
-      <Stack spacing="xl" p={0}>
-        <Group position="apart">
-          <Text weight={500} ff="'Source Code Pro', monospace" fz={12}>
-            {data.secret}
-          </Text>
-          <CopyButton value={data.secret!} timeout={2000}>
-            {({ copied, copy }) => (
-              <Tooltip label={copied ? 'Copied' : 'Copy'} color={copied ? 'teal' : 'gray'} position="left" withArrow>
-                <ActionIcon color={copied ? 'teal' : 'gray'} onClick={copy}>
-                  {copied ? <IconCheck size={16} strokeWidth={1} /> : <IconCopy size={16} strokeWidth={1} />}
-                </ActionIcon>
-              </Tooltip>
-            )}
-          </CopyButton>
-        </Group>
-        {data.permissions && data.permissions.length > 0 ? (
-          <Spoiler
-            maxHeight={200}
-            showLabel="Show more"
-            styles={theme => ({ control: { color: theme.colors.gray[3], paddingTop: 8 } })}
-            hideLabel="Hide">
-            <Table verticalSpacing={4} horizontalSpacing={0}>
-              <thead>
-                <tr>
-                  <th>Bucket</th>
-                  <th>Access level</th>
-                </tr>
-              </thead>
-              <tbody>
-                <Permissions permissions={data.permissions} />
-              </tbody>
-            </Table>
-          </Spoiler>
-        ) : null}
-      </Stack>
-    </Card>
+    <MediaQuery largerThan="md" styles={{ width: '400px !important' }}>
+      <Card
+        shadow="sm"
+        p="md"
+        radius="md"
+        withBorder
+        style={{ width: '100%', wordBreak: 'break-all', fontSize: '10px' }}>
+        <Stack spacing="xl" p={0}>
+          <Group position="apart">
+            <Text weight={500} ff="'Source Code Pro', monospace" fz="xs">
+              {data.secret}
+            </Text>
+            <CopyButton value={data.secret!} timeout={2000}>
+              {({ copied, copy }) => (
+                <Tooltip label={copied ? 'Copied' : 'Copy'} color={copied ? 'teal' : 'gray'} position="left" withArrow>
+                  <ActionIcon color={copied ? 'teal' : 'gray'} onClick={copy}>
+                    {copied ? <IconCheck size={16} strokeWidth={1} /> : <IconCopy size={16} strokeWidth={1} />}
+                  </ActionIcon>
+                </Tooltip>
+              )}
+            </CopyButton>
+          </Group>
+          {data.permissions && data.permissions.length > 0 ? (
+            <Spoiler
+              maxHeight={200}
+              showLabel="Show more"
+              styles={theme => ({ control: { color: theme.colors.gray[3], paddingTop: 8 } })}
+              hideLabel="Hide">
+              <Table verticalSpacing={4} horizontalSpacing={0}>
+                <thead>
+                  <tr>
+                    <th>Bucket</th>
+                    <th>Access level</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <Permissions permissions={data.permissions} />
+                </tbody>
+              </Table>
+            </Spoiler>
+          ) : null}
+        </Stack>
+      </Card>
+    </MediaQuery>
   );
 }
 

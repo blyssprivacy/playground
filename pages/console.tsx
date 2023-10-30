@@ -1,11 +1,12 @@
 import { useAuth, SignedIn, SignedOut, RedirectToSignIn } from '@clerk/nextjs';
 import {
   ActionIcon,
+  Box,
   Card,
-  Container,
   CopyButton,
   Flex,
   Group,
+  MediaQuery,
   Select,
   Stack,
   Text,
@@ -61,24 +62,31 @@ const EnvSelector = ({ apiEndpoint, setApiEndpoint }: EnvSelectorProps) => {
 
 function BucketEnv({ env }: { env: string }) {
   return (
-    <Card shadow="sm" p="md" radius="md" withBorder w={400}>
-      <Stack spacing="xl" p={0}>
-        <Group position="apart">
-          <Text weight={500} ff="'Source Code Pro', monospace" fz={16}>
-            {env}
-          </Text>
-          <CopyButton value={env!} timeout={2000}>
-            {({ copied, copy }) => (
-              <Tooltip label={copied ? 'Copied' : 'Copy'} color={copied ? 'teal' : 'gray'} position="left" withArrow>
-                <ActionIcon color={copied ? 'teal' : 'gray'} onClick={copy}>
-                  {copied ? <IconCheck size={16} strokeWidth={1} /> : <IconCopy size={16} strokeWidth={1} />}
-                </ActionIcon>
-              </Tooltip>
-            )}
-          </CopyButton>
-        </Group>
-      </Stack>
-    </Card>
+    <MediaQuery largerThan="md" styles={{ width: '400px !important', fontSize: '10px !important' }}>
+      <Card
+        shadow="sm"
+        p="md"
+        radius="md"
+        withBorder
+        style={{ width: '100%', wordBreak: 'break-all', fontSize: '10px' }}>
+        <Stack spacing="xl" p={0}>
+          <Group position="apart">
+            <Text weight={500} ff="'Source Code Pro', monospace" fz="sm">
+              {env}
+            </Text>
+            <CopyButton value={env!} timeout={2000}>
+              {({ copied, copy }) => (
+                <Tooltip label={copied ? 'Copied' : 'Copy'} color={copied ? 'teal' : 'gray'} position="left" withArrow>
+                  <ActionIcon color={copied ? 'teal' : 'gray'} onClick={copy}>
+                    {copied ? <IconCheck size={16} strokeWidth={1} /> : <IconCopy size={16} strokeWidth={1} />}
+                  </ActionIcon>
+                </Tooltip>
+              )}
+            </CopyButton>
+          </Group>
+        </Stack>
+      </Card>
+    </MediaQuery>
   );
 }
 
@@ -151,7 +159,7 @@ export default function SSRPage() {
   }, [apiEndpoint]);
 
   return (
-    <Container size={'100%'}>
+    <Box>
       <SignedIn>
         <Flex justify="flex-start" rowGap={50} align="flex-start" direction="column">
           <MenuBar />
@@ -165,6 +173,6 @@ export default function SSRPage() {
       <SignedOut>
         <RedirectToSignIn />
       </SignedOut>
-    </Container>
+    </Box>
   );
 }
