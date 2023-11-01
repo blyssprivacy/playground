@@ -97,7 +97,8 @@ export default function Pricing() {
                   <a
                     className="btn-sm text-slate-900 bg-gradient-to-r from-white/80 via-white to-white/80 hover:bg-white w-full transition duration-150 ease-in-out group"
                     href="#0">
-                    Get Started{' '}
+                    <span className="inline md:hidden lg:inline">Get Started</span>{' '}
+                    <span className="hidden md:inline lg:hidden">Go</span>{' '}
                     <span className="tracking-normal text-purple-500 group-hover:translate-x-0.5 transition-transform duration-150 ease-in-out ml-1">
                       -&gt;
                     </span>
@@ -119,7 +120,8 @@ export default function Pricing() {
                   <a
                     className="btn-sm text-white bg-purple-500 hover:bg-purple-600 w-full transition duration-150 ease-in-out group"
                     href="#0">
-                    Get Started{' '}
+                    <span className="inline md:hidden lg:inline">Get Started</span>{' '}
+                    <span className="hidden md:inline lg:hidden">Go</span>{' '}
                     <span className="tracking-normal text-purple-300 group-hover:translate-x-0.5 transition-transform duration-150 ease-in-out ml-1">
                       -&gt;
                     </span>
@@ -141,7 +143,7 @@ export default function Pricing() {
                   <a
                     className="btn-sm text-slate-900 bg-gradient-to-r from-white/80 via-white to-white/80 hover:bg-white w-full transition duration-150 ease-in-out group"
                     href="mailto:founders@blyss.dev">
-                    Contact us{' '}
+                    Contact{' '}
                     <span className="tracking-normal text-purple-500 group-hover:translate-x-0.5 transition-transform duration-150 ease-in-out ml-1">
                       -&gt;
                     </span>
@@ -169,25 +171,19 @@ export default function Pricing() {
               <div className="px-6 flex flex-col justify-end">
                 <div className="flex items-center h-full border-b border-slate-800 py-2 text-slate-400">
                   {/* <IconCheckBranded /> */}
-                  <span>
-                    10k tokens/day <span className="md:hidden">Usage Limit</span>
-                  </span>
+                  <span>10k tokens/day</span>
                 </div>
               </div>
               <div className="px-6 flex flex-col justify-end">
                 <div className="flex items-center h-full border-b border-slate-800 py-2 text-slate-400">
                   {/* <IconCheckBranded /> */}
-                  <span>
-                    100k tokens/day <span className="md:hidden">Usage Limit</span>
-                  </span>
+                  <span>100k tokens/day</span>
                 </div>
               </div>
               <div className="px-6 flex flex-col justify-end">
                 <div className="flex items-center h-full border-b border-slate-800 py-2 text-slate-400">
                   {/* <IconCheckBranded /> */}
-                  <span>
-                    Unlimited <span className="md:hidden">Usage Limit</span>
-                  </span>
+                  usage-based billing
                 </div>
               </div>
 
@@ -198,17 +194,13 @@ export default function Pricing() {
               <div className="px-6 flex flex-col justify-end">
                 <div className="flex items-center h-full border-b border-slate-800 py-2 text-slate-400">
                   {/* <IconCheckBranded /> */}
-                  <span>
-                    10 token/sec<span className="md:hidden">Generation Speed</span>
-                  </span>
+                  <span>10 token/sec</span>
                 </div>
               </div>
               <div className="px-6 flex flex-col justify-end">
                 <div className="flex items-center h-full border-b border-slate-800 py-2 text-slate-400">
                   {/* <IconCheckBranded /> */}
-                  <span>
-                    30 token/sec <span className="md:hidden">Generation Speed</span>
-                  </span>
+                  <span>30 token/sec</span>
                 </div>
               </div>
               <div className="px-6 flex flex-col justify-end">
@@ -228,7 +220,7 @@ export default function Pricing() {
                 <div className="flex items-center h-full border-b border-slate-800 py-2 text-slate-400">
                   {/* <IconCheckBranded /> */}
                   <span>
-                    best-effort<span className="md:hidden">Request Latency</span>
+                    best-effort <span className="md:hidden"> latency</span>
                   </span>
                 </div>
               </div>
@@ -236,7 +228,7 @@ export default function Pricing() {
                 <div className="flex items-center h-full border-b border-slate-800 py-2 text-slate-400">
                   {/* <IconCheckBranded /> */}
                   <span>
-                    1 sec<span className="md:hidden">Request Latency</span>
+                    up to 1 sec <span className="md:hidden">latency</span>
                   </span>
                 </div>
               </div>
@@ -244,7 +236,7 @@ export default function Pricing() {
                 <div className="flex items-center h-full border-b border-slate-800 py-2 text-slate-400">
                   {/* <IconCheckBranded /> */}
                   <span>
-                    100ms <span className="md:hidden">Request Latency</span>
+                    100ms <span className="md:hidden">latency</span>
                   </span>
                 </div>
               </div>
@@ -297,7 +289,7 @@ export default function Pricing() {
                 <div className="py-2 text-slate-400 border-b border-slate-800">Custom models</div>
               </div>
               <div className="px-6 flex flex-col justify-end">
-                <div className="flex items-center h-full border-b border-slate-800 py-2 text-slate-400">
+                <div className="flex items-center h-full border-b border-slate-800 py-2 text-slate-400 max-md:hidden">
                   <span>
                     <span className="md:hidden">Custom models</span>
                   </span>
@@ -349,10 +341,10 @@ export default function Pricing() {
 
               {/* # Reliability */}
               <div className="px-6 flex flex-col justify-end">
-                <div className="py-2 text-slate-50 font-medium mt-4">Reliability</div>
+                <div className="py-2 text-slate-50 font-medium mt-4 ">Reliability</div>
               </div>
               <div className="px-6 flex flex-col justify-end">
-                <div className="py-2 text-slate-50 font-medium mt-4 hidden">Reliability</div>
+                <div className="py-2 text-slate-50 font-medium mt-4 md:hidden">Reliability</div>
               </div>
               <div className="px-6 flex flex-col justify-end">
                 <div className="py-2 text-slate-50 font-medium mt-4 md:hidden">Reliability</div>
@@ -373,7 +365,7 @@ export default function Pricing() {
                 </div>
               </div>
               <div className="px-6 flex flex-col justify-end">
-                <div className="flex items-center h-full border-b border-slate-800 py-2 text-slate-400">
+                <div className="flex items-center h-full border-b border-slate-800 py-2 text-slate-400 max-md:hidden">
                   <span>
                     <span className="md:hidden">Uptime SLA</span>
                   </span>
@@ -383,7 +375,7 @@ export default function Pricing() {
                 <div className="flex items-center h-full border-b border-slate-800 py-2 text-slate-400">
                   <IconCheckBranded /> Customizable
                   <span>
-                    <span className="md:hidden">Uptime SLA</span>
+                    <span className="md:hidden">&nbsp;SLA</span>
                   </span>
                 </div>
               </div>
@@ -400,7 +392,7 @@ export default function Pricing() {
                 </div>
               </div>
               <div className="px-6 flex flex-col justify-end">
-                <div className="flex items-center h-full border-b border-slate-800 py-2 text-slate-400">
+                <div className="flex items-center h-full border-b border-slate-800 py-2 text-slate-400 max-md:hidden">
                   <span>
                     <span className="md:hidden">Dedicated Capacity</span>
                   </span>

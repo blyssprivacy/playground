@@ -24,12 +24,12 @@ export default function Features() {
           </div>
         </div>
 
-        <div className="pt-16 pb-12 md:pt-52 md:pb-20">
+        <div className="pt-16 pb-12 lg:pt-52 lg:pb-20">
           <div>
             {/* Section content */}
-            <div className="max-w-xl mx-auto md:max-w-none flex flex-col md:flex-row md:items-end md:space-x-8 lg:space-x-16 xl:space-x-20 space-y-8 md:space-y-0">
+            <div className="max-w-xl mx-auto lg:max-w-none flex flex-col lg:flex-row lg:items-end lg:space-x-8 xl:space-x-20 space-y-8 lg:space-y-0">
               {/* Content */}
-              <div className="md:w-7/12 lg:w-1/2  max-md:text-center" data-aos="fade-down">
+              <div className="lg:w-7/12 lg:w-1/2  max-lg:text-center" data-aos="fade-down">
                 {/* Content #1 */}
                 <div>
                   <div className="inline-flex font-medium bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-purple-200 pb-3">
@@ -45,7 +45,7 @@ export default function Features() {
                   secure enclaves, which keep data encrypted even while in use. No one - not even us - ever gets a
                   chance to see your data.
                 </p>
-                <div className="mt-8 max-w-xs max-md:mx-auto space-y-2">
+                <div className="mt-8 max-w-xs max-lg:mx-auto space-y-2">
                   <button
                     className={`flex items-center text-sm font-medium text-slate-50 rounded border bg-slate-800/25 w-full px-3 py-2 transition duration-150 ease-in-out hover:opacity-100 ${
                       tab !== 1 ? 'border-slate-700 opacity-50' : 'border-purple-700 shadow shadow-purple-500/25'
@@ -75,7 +75,7 @@ export default function Features() {
               </div>
 
               {/* Image */}
-              <div className="md:w-5/12 lg:w-1/2 " data-aos="fade-up" data-aos-delay="100">
+              <div className="lg:w-5/12 lg:w-1/2 " data-aos="fade-up" data-aos-delay="100">
                 <div className="relative py-24 -mt-12">
                   {/* Particles animation */}
                   <Particles className="absolute inset-0 -z-10" quantity={8} staticity={30} />
@@ -104,10 +104,10 @@ export default function Features() {
                         leaveTo="opacity-0">
                         <div className="relative flex flex-col items-left justify-center w-96 p-6 border border-transparent rounded-2xl shadow-2xl [background:linear-gradient(theme(colors.slate.900),_theme(colors.slate.900))_padding-box,_conic-gradient(theme(colors.purple.400),_theme(colors.purple.700)_25%,_theme(colors.purple.700)_75%,_theme(colors.slate.400)_100%)_border-box] before:absolute before:inset-0 before:bg-slate-800/30 before:rounded-2xl">
                           <h3 className="inline-flex text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-slate-200/60 via-slate-200 to-slate-200/60 pb-1">
-                            Automatic verification in browsers.
+                            Browser-enforced security.
                           </h3>
                           We tie confidentiality proofs to TLS certificates, so browser clients can skip explicit proof
-                          checks - the TLS connection fails safely when the attestation is invalid or otherwise not
+                          checks - the TLS connection fails safely if the attestation is invalid or otherwise not
                           corroborated in the public Certificate Transparency log.
                         </div>
                       </Transition>
