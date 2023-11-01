@@ -64,7 +64,7 @@ export default function Examples() {
                       <div className="absolute w-1/4 h-1/4 translate-z-0 bg-purple-400 rounded-full blur-[40px]" />
                     </div>
                     {/* Text */}
-                    <div className="md:max-w-[480px] shrink-0 order-1 md:order-none p-6 pt-0 md:p-8 md:pr-0">
+                    <div className="md:max-w-[480px] shrink-0 order-1 md:order-none p-6 md:p-8">
                       <div className="mb-5">
                         <div>
                           <h3 className="inline-flex text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-slate-200/60 via-slate-200 to-slate-200/60 pb-1">
@@ -108,7 +108,7 @@ export default function Examples() {
                       <div className="absolute inset-0 translate-z-0 bg-slate-800 rounded-full blur-[80px]" />
                     </div>
                     {/* Text */}
-                    <div className="md:max-w-[480px] shrink-0 order-1 md:order-none p-6 pt-0 md:p-8">
+                    <div className="md:max-w-[480px] shrink-0 order-1 md:order-none p-6 md:p-8">
                       <div>
                         <h3 className="inline-flex text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-slate-200/60 via-slate-200 to-slate-200/60 pb-1">
                           Strong proof for our strong claims.
@@ -140,17 +140,6 @@ export default function Examples() {
                         </div>
                       </div>
                     </div>
-
-                    {/* Image */}
-                    <div className="relative w-full h-64 md:h-auto overflow-hidden md:pb-8">
-                      {/* <Image
-                        className="absolute bottom-0 left-1/2 -translate-x-1/2 mx-auto max-w-none md:max-w-full md:relative md:left-0 md:translate-x-0"
-                        src={FeatureImg02}
-                        width={536}
-                        height={230}
-                        alt="Feature 02"
-                      /> */}
-                    </div>
                   </div>
                 </div>
               </HighlighterItem>
@@ -167,7 +156,7 @@ export default function Examples() {
                       <div className="absolute inset-0 translate-z-0 bg-slate-800 rounded-full blur-[80px]" />
                     </div>
                     {/* Text */}
-                    <div className="md:max-w-[480px] shrink-0 order-1 md:order-none p-6 pt-0 md:p-8">
+                    <div className="md:max-w-[480px] shrink-0 order-1 md:order-none p-6 ">
                       <div>
                         <h3 className="inline-flex text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-slate-200/60 via-slate-200 to-slate-200/60 pb-1">
                           Continuous Public Verification
