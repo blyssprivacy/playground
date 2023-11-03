@@ -31,6 +31,7 @@ export default function Examples() {
               />
             </svg>
           </div>
+
           {/* Grid */}
           <Highlighter className="grid md:grid-cols-12 gap-6 group">
             {/* Box #1 */}
@@ -64,7 +65,7 @@ export default function Examples() {
                       <div className="absolute w-1/4 h-1/4 translate-z-0 bg-purple-400 rounded-full blur-[40px]" />
                     </div>
                     {/* Text */}
-                    <div className="md:max-w-[480px] shrink-0 order-1 md:order-none p-6 md:p-8">
+                    <div className="md:max-w-[480px] shrink-0 order-1 md:order-none p-6">
                       <div className="mb-5">
                         <div>
                           <h3 className="inline-flex text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-slate-200/60 via-slate-200 to-slate-200/60 pb-1">
@@ -75,6 +76,7 @@ export default function Examples() {
                           </p>
                         </div>
                       </div>
+                      {/* Button */}
                       <div>
                         <a
                           className="btn-sm text-slate-300 hover:text-white transition duration-150 ease-in-out group [background:linear-gradient(theme(colors.slate.900),_theme(colors.slate.900))_padding-box,_conic-gradient(theme(colors.slate.400),_theme(colors.slate.700)_25%,_theme(colors.slate.700)_75%,_theme(colors.slate.400)_100%)_border-box] relative before:absolute before:inset-0 before:bg-slate-800/30 before:rounded-full before:pointer-events-none"
@@ -108,22 +110,22 @@ export default function Examples() {
                       <div className="absolute inset-0 translate-z-0 bg-slate-800 rounded-full blur-[80px]" />
                     </div>
                     {/* Text */}
-                    <div className="md:max-w-[480px] shrink-0 order-1 md:order-none p-6 md:p-8">
+                    <div className="md:max-w-[480px] shrink-0 order-1 md:order-none p-6">
                       <div>
                         <h3 className="inline-flex text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-slate-200/60 via-slate-200 to-slate-200/60 pb-1">
                           Strong proof for our strong claims.
                         </h3>
                         <div className="flex flex-col gap-6">
                           <p className="text-slate-400">
-                            Blyss uses new hardware features of AMD Genoa CPUs and the NVIDIA Hopper GPU to establish
+                            Blyss uses new hardware features of the NVIDIA Hopper GPU and the AMD Genoa CPU to establish
                             high-security trusted computing environments. Every connection to a Blyss model comes with a
                             cryptographically signed statement that attests exactly what code is running, and on what
                             hardware.
                           </p>
-                          <p className="text-slate-400">
+                          {/* <p className="text-slate-400">
                             It is impossible for Blyss (or any impersonator) to change anything about how requests are
                             handled without user consent.
-                          </p>
+                          </p> */}
                           {/* Button */}
                           <div>
                             <a

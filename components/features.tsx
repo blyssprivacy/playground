@@ -9,27 +9,56 @@ import Illustration from '@/public/images/glow-top.svg'
 
 import { IconBolt, IconLock, IconRefresh } from '@tabler/icons-react';
 
+import resolveConfig from 'tailwindcss/resolveConfig';
+import tailwindConfig from '../tailwind.config.js';
+const themeColors = resolveConfig(tailwindConfig)?.theme?.colors ?? {};
+
 export default function Features() {
   const [tab, setTab] = useState<number>(1);
+
+  const blyssC1 = (themeColors.pink as any)['500']; // light
+  const blyssC2 = (themeColors.purple as any)['700']; // dark
 
   return (
     <section>
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6">
-        {/* Illustration */}
+        {/* Blobs */}
         <div
           className="absolute inset-0 -z-10 -mx-28 rounded-t-[3rem] pointer-events-none overflow-hidden"
           aria-hidden="true">
-          <div className="absolute left-1/2 -translate-x-1/2 top-0 -z-10">
-            <Image src={Illustration} className="max-w-none" width={1404} height={658} alt="Features Illustration" />
+          <div className="relative w-full h-full">
+            <div
+              className="absolute w-3/4 h-1/4   blur-2xl opacity-20"
+              style={{
+                top: '20%',
+                left: '20%',
+                borderRadius: '50% 50% 46% 54% / 68% 31% 69% 32% ',
+                transform: 'rotate(-10deg)',
+                backgroundColor: blyssC2,
+                background: `radial-gradient(circle at 50% 50%, ${blyssC1}, transparent)`
+              }}
+            />
+
+            <div
+              className="absolute w-96 h-36 blur-2xl opacity-20"
+              style={{
+                top: '65%',
+                left: '15%',
+                borderRadius: '30% 70% 70% 30% / 30% 30% 70% 70% ',
+                transform: 'rotate(10deg)',
+                backgroundColor: blyssC2,
+                background: `radial-gradient(circle at 50% 50%, ${blyssC1}, transparent)`
+              }}
+            />
           </div>
         </div>
 
-        <div className="pt-16 pb-12 lg:pt-52 lg:pb-20">
+        <div className="pt-16 pb-12 ">
           <div>
             {/* Section content */}
-            <div className="max-w-xl mx-auto lg:max-w-none flex flex-col lg:flex-row lg:items-end lg:space-x-8 xl:space-x-20 space-y-8 lg:space-y-0">
+            <div className="max-w-xl mx-auto flex flex-col items-center lg:max-w-none lg:flex-row lg:items-end lg:space-x-8 xl:space-x-20 space-y-8 lg:space-y-0">
               {/* Content */}
-              <div className="lg:w-7/12 lg:w-1/2  max-lg:text-center" data-aos="fade-down">
+              <div className="lg:w-1/2 max-lg:text-center" data-aos="fade-down">
                 {/* Content #1 */}
                 <div>
                   <div className="inline-flex font-medium bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-purple-200 pb-3">
@@ -39,11 +68,11 @@ export default function Features() {
                 <h3 className="h3 bg-clip-text text-transparent bg-gradient-to-r from-slate-200/60 via-slate-200 to-slate-200/60 pb-3">
                   Don't just reduce leaks.<br></br>Make them impossible.
                 </h3>
-                <p className="text-lg text-slate-400  mb-8">
-                  Other AI companies can only promise to be careful with your data.
-                  <strong className="text-white"> We prove it.</strong>&nbsp;Our Confidential AI models run inside
-                  secure enclaves, which keep data encrypted even while in use. No one - not even us - ever gets a
-                  chance to see your data.
+                <p className="text-lg max-w-xs  max-lg:mx-auto lg:max-w-md text-slate-400  mb-8">
+                  Most AI companies only promise to be careful with your data.{' '}
+                  <strong className="text-white whitespace-nowrap">We prove it.</strong> Our Confidential AI models run
+                  inside secure enclaves, which keep data encrypted even while in use. No one - not even us - ever gets
+                  a chance to see your data.
                 </p>
                 <div className="mt-8 max-w-xs max-lg:mx-auto space-y-2">
                   <button
@@ -106,9 +135,9 @@ export default function Features() {
                           <h3 className="inline-flex text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-slate-200/60 via-slate-200 to-slate-200/60 pb-1">
                             Browser-enforced security.
                           </h3>
-                          We tie confidentiality proofs to TLS certificates, so browser clients can skip explicit proof
-                          checks - the TLS connection fails safely if the attestation is invalid or otherwise not
-                          corroborated in the public Certificate Transparency log.
+                          We tie confidentiality proofs to TLS certificates, so most browsers are safe by default - the
+                          connection fails if the attestation is invalid or otherwise not corroborated in the public
+                          Certificate Transparency log.
                         </div>
                       </Transition>
                       <Transition

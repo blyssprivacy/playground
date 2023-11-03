@@ -3,13 +3,6 @@ export default function Cta() {
     <section>
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="relative px-8 py-12 md:py-20 rounded-[3rem] overflow-hidden">
-          {/* Radial gradient */}
-          <div
-            className="absolute flex items-center justify-center top-0 -translate-y-1/2 left-1/2 -translate-x-1/2 pointer-events-none -z-10 w-1/3 aspect-square"
-            aria-hidden="true">
-            <div className="absolute inset-0 translate-z-0 bg-purple-500 rounded-full blur-[120px] opacity-70" />
-            <div className="absolute w-1/4 h-1/4 translate-z-0 bg-purple-400 rounded-full blur-[40px]" />
-          </div>
           {/* Blurred shape */}
           <div
             className="absolute bottom-0 translate-y-1/2 left-0 blur-2xl opacity-50 pointer-events-none -z-10"
@@ -25,7 +18,7 @@ export default function Cta() {
             </svg>
           </div>
           {/* Content */}
-          <div className="max-w-3xl mx-auto text-center">
+          <div className="flex flex-col items-center max-w-3xl text-center mx-auto">
             <div>
               <div className="inline-flex font-medium bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-purple-200 pb-3">
                 Confidential AI
@@ -34,7 +27,7 @@ export default function Cta() {
             <h2 className="h2 bg-clip-text text-transparent bg-gradient-to-r from-slate-200/60 via-slate-200 to-slate-200/60 pb-4">
               Take back control of your data
             </h2>
-            <p className="text-lg text-slate-400 mb-8">
+            <p className="text-lg text-slate-400 mb-8 max-w-lg">
               Ship AI features faster and with less risk. Get on a call with a Blyss founder and we'll show you how much
               simpler and safer confidential AI can be.
             </p>

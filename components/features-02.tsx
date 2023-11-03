@@ -17,6 +17,9 @@ export default function Features02() {
             <h2 className="h2 bg-clip-text text-transparent bg-gradient-to-r from-slate-200/60 via-slate-200 to-slate-200/60 pb-4">
               Your data makes it your AI.
             </h2>
+            {/* <p className="text-xl text-slate-400">
+              Data is everything in AI. Own your data, and let the models work for you.
+            </p> */}
           </div>
         </div>
       </div>

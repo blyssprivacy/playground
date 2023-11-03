@@ -1,7 +1,7 @@
 export const metadata = {
-  title: 'Home - Stellar',
-  description: 'Page description',
-}
+  title: 'Blyss',
+  description: 'The platform for confidential AI.'
+};
 
 import Hero from '@/components/hero'
 import Clients from '@/components/clients'
