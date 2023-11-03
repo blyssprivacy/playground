@@ -14,6 +14,7 @@
     "@emotion/react": "^11.10.6",
     "@emotion/server": "^11.10.0",
     "@headlessui/react": "^1.7.17",
+    "@heroicons/react": "^2.0.18",
     "@mantine/core": "^6.0.1",
     "@mantine/hooks": "^6.0.1",
     "@mantine/next": "^6.0.1",

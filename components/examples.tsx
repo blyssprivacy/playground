@@ -1,10 +1,8 @@
 import Image from 'next/image';
 import Highlighter, { HighlighterItem } from './highlighter';
 import { IconMessageDots } from '@tabler/icons-react';
+import PublicVerification from '@/public/logos/github.png';
 
-import FeatureImg01 from '@/public/images/feature-image-01.png';
-import FeatureImg02 from '@/public/images/feature-image-02.png';
-import FeatureImg03 from '@/public/images/feature-image-03.png';
 import { CTACall, GrayOutlineGradient } from './buttons';
 
 export default function Examples() {
@@ -36,7 +34,7 @@ export default function Examples() {
           {/* Grid */}
           <Highlighter className="grid md:grid-cols-12 gap-6 group">
             {/* Box #1 */}
-            <div className="md:col-span-12" data-aos="fade-down">
+            <div id="ai" className="md:col-span-12" data-aos="fade-down">
               <HighlighterItem>
                 <div className="relative h-full bg-slate-900 rounded-[inherit] z-20 overflow-hidden">
                   <div className="flex flex-col md:flex-row md:items-center md:justify-between">
@@ -66,7 +64,7 @@ export default function Examples() {
                       <div className="absolute w-1/4 h-1/4 translate-z-0 bg-purple-400 rounded-full blur-[40px]" />
                     </div>
                     {/* Text */}
-                    <div className="md:max-w-[480px] shrink-0 order-1 md:order-none p-6">
+                    <div className=" shrink-0 order-1 md:order-none p-6">
                       <div className="mb-5">
                         <div>
                           <h3 className="inline-flex text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-slate-200/60 via-slate-200 to-slate-200/60 pb-1">
@@ -166,10 +164,10 @@ export default function Examples() {
                     <div className="relative w-full h-64 md:h-auto overflow-hidden md:pb-8">
                       <Image
                         className="absolute bottom-0 left-1/2 -translate-x-1/2 mx-auto max-w-none md:max-w-full md:relative md:left-0 md:translate-x-0"
-                        src={FeatureImg03}
+                        src={PublicVerification}
                         width={230}
                         height={230}
-                        alt="Feature 03"
+                        alt="Public Verification"
                       />
                     </div>
                   </div>

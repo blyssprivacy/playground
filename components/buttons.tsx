@@ -1,5 +1,7 @@
 import Link from 'next/link';
 
+export const CallLink = 'https://calendar.app.google/n1zVWeURhzx21DJH6';
+
 export function GrayOutlineGradient({
   buttonText,
   linkTarget,
@@ -29,7 +31,7 @@ export const CTACall = ({ buttonText = 'Learn more on a call' }: { buttonText?: 
   return (
     <a
       className="btn text-slate-900 bg-gradient-to-r from-white/80 via-white to-white/80 hover:bg-white w-auto transition duration-150 ease-in-out group"
-      href="https://calendar.app.google/n1zVWeURhzx21DJH6">
+      href={CallLink}>
       <span className="relative inline-flex items-center flex-shrink-0 whitespace-nowrap">{buttonText}</span>
       <span className="tracking-normal text-purple-500 group-hover:translate-x-0.5 transition-transform duration-150 ease-in-out ml-1 flex-shrink-0 whitespace-nowrap">
         -&gt;

@@ -136,8 +136,8 @@ export default function Features() {
                             Browser-enforced security.
                           </h3>
                           We tie confidentiality proofs to TLS certificates, so most browsers are safe by default - the
-                          connection fails if the attestation is invalid or otherwise not corroborated in the public
-                          Certificate Transparency log.
+                          connection fails if the attestation is not corroborated in the public Certificate Transparency
+                          log.
                         </div>
                       </Transition>
                       <Transition
