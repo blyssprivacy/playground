@@ -103,8 +103,8 @@ export default function Features() {
                 {/* <div style={{ height: '5vh' }}></div> */}
               </div>
 
-              {/* Image */}
-              <div className="lg:w-5/12 lg:w-1/2 " data-aos="fade-up" data-aos-delay="100">
+              {/* Description Cards */}
+              <div className="lg:w-1/2 " data-aos="fade-up" data-aos-delay="100">
                 <div className="relative py-24 -mt-12">
                   {/* Particles animation */}
                   <Particles className="absolute inset-0 -z-10" quantity={8} staticity={30} />
@@ -121,7 +121,7 @@ export default function Features() {
                         </div>
                       </div>
 
-                      {/* Icons */}
+                      {/* Cards */}
                       <Transition
                         show={tab === 1}
                         className="absolute"

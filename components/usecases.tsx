@@ -5,10 +5,10 @@ import { IconCode, IconSearch, IconCalendar } from '@tabler/icons-react';
 export default function UseCases() {
   return (
     <section className="relative">
-      <div className="text-center py-12">
+      {/* <div className="text-center py-12">
         <h3 className="h3 text-white">Use Cases</h3>
-      </div>
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+      </div> */}
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 pb-16">
         <div className="grid md:grid-cols-3 gap-8 md:gap-12">
           {/* Copilot */}
           <div>

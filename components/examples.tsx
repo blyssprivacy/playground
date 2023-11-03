@@ -5,13 +5,14 @@ import { IconMessageDots } from '@tabler/icons-react';
 import FeatureImg01 from '@/public/images/feature-image-01.png';
 import FeatureImg02 from '@/public/images/feature-image-02.png';
 import FeatureImg03 from '@/public/images/feature-image-03.png';
+import { CTACall, GrayOutlineGradient } from './buttons';
 
 export default function Examples() {
   return (
     <section className="relative">
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6">
         {/* Highlighted boxes */}
-        <div className="relative pb-12 md:pb-20">
+        <div className="relative pb-12">
           {/* Blurred shape */}
           <div
             className="absolute bottom-0 -mb-20 left-1/2 -translate-x-1/2 blur-2xl opacity-50 pointer-events-none"
@@ -69,25 +70,17 @@ export default function Examples() {
                       <div className="mb-5">
                         <div>
                           <h3 className="inline-flex text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-slate-200/60 via-slate-200 to-slate-200/60 pb-1">
-                            Try Confidential AI
+                            Use Confidential AI
                           </h3>
                           <p className="text-slate-400">
-                            Talk to an confidential AI assistant in your browser. All exchanges are totally private.
+                            Get access to our private beta and start using confidential AI.
                           </p>
                         </div>
                       </div>
                       {/* Button */}
-                      <div>
-                        <a
-                          className="btn-sm text-slate-300 hover:text-white transition duration-150 ease-in-out group [background:linear-gradient(theme(colors.slate.900),_theme(colors.slate.900))_padding-box,_conic-gradient(theme(colors.slate.400),_theme(colors.slate.700)_25%,_theme(colors.slate.700)_75%,_theme(colors.slate.400)_100%)_border-box] relative before:absolute before:inset-0 before:bg-slate-800/30 before:rounded-full before:pointer-events-none"
-                          href="#0">
-                          <span className="relative inline-flex items-center">
-                            Try now{' '}
-                            <span className="tracking-normal text-purple-500 group-hover:translate-x-0.5 transition-transform duration-150 ease-in-out ml-1">
-                              -&gt;
-                            </span>
-                          </span>
-                        </a>
+                      <div className="flex gap-4">
+                        <CTACall buttonText="Book a call" />
+                        <GrayOutlineGradient buttonText="Sign Up" linkTarget="/signup" arrow={true} />
                       </div>
                     </div>
                     {/* Icon */}
@@ -117,10 +110,9 @@ export default function Examples() {
                         </h3>
                         <div className="flex flex-col gap-6">
                           <p className="text-slate-400">
-                            Blyss uses new hardware features of the NVIDIA Hopper GPU and the AMD Genoa CPU to establish
-                            high-security trusted computing environments. Every connection to a Blyss model comes with a
-                            cryptographically signed statement that attests exactly what code is running, and on what
-                            hardware.
+                            Blyss uses the enclave features of the NVIDIA Hopper GPU and the AMD Genoa CPU to establish
+                            high-security trusted computing environments. Every connection is backed by a
+                            cryptographically signed statement that identifies exactly what code is running.
                           </p>
                           {/* <p className="text-slate-400">
                             It is impossible for Blyss (or any impersonator) to change anything about how requests are

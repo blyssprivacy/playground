@@ -1,3 +1,5 @@
+import { CTACall, GrayOutlineGradient } from './buttons';
+
 export default function Cta() {
   return (
     <section>
@@ -29,17 +31,11 @@ export default function Cta() {
             </h2>
             <p className="text-lg text-slate-400 mb-8 max-w-lg">
               Ship AI features faster and with less risk. Get on a call with a Blyss founder and we'll show you how much
-              simpler and safer confidential AI can be.
+              simpler and safer Confidential AI can be.
             </p>
-            <div>
-              <a
-                className="btn text-slate-900 bg-gradient-to-r from-white/80 via-white to-white/80 hover:bg-white transition duration-150 ease-in-out group"
-                href="#0">
-                Book a call{' '}
-                <span className="tracking-normal text-purple-500 group-hover:translate-x-0.5 transition-transform duration-150 ease-in-out ml-1">
-                  -&gt;
-                </span>
-              </a>
+            <div className="flex w-auto gap-4 justify-around">
+              <CTACall />
+              <GrayOutlineGradient buttonText="Try now" linkTarget="/signup" arrow={true} />
             </div>
           </div>
         </div>

@@ -1,6 +1,5 @@
-import Image from 'next/image'
 import Particles from './particles';
-import { IconBook } from '@tabler/icons-react';
+import { CTACall, GrayOutlineGradient } from './buttons';
 
 export default function Hero() {
   return (
@@ -76,22 +75,19 @@ export default function Hero() {
               data-aos="fade-down"
               data-aos-delay="400">
               <div>
-                <a
-                  className="btn text-slate-900 bg-gradient-to-r from-white/80 via-white to-white/80 hover:bg-white w-full transition duration-150 ease-in-out group"
-                  href="https://calendar.app.google/n1zVWeURhzx21DJH6">
-                  Learn more on a call{' '}
-                  <span className="tracking-normal text-purple-500 group-hover:translate-x-0.5 transition-transform duration-150 ease-in-out ml-1">
-                    -&gt;
-                  </span>
-                </a>
+                <CTACall />
               </div>
               <div>
-                <a
-                  className="btn text-slate-200 hover:text-white bg-slate-900 bg-opacity-25 hover:bg-opacity-30 w-full transition duration-150 ease-in-out"
+                {/* <a
+                  className="btn text-slate-200 hover:text-white bg-slate-900 bg-opacity-25 hover:bg-opacity-30 w-auto transition duration-150 ease-in-out border-1 border-purple-500"
                   href="https://blog.blyss.dev/confidential-ai-from-gpu-enclaves">
-                  <IconBook className="mr-2" />
                   <span>Read Security Docs</span>
-                </a>
+                </a> */}
+                <GrayOutlineGradient
+                  buttonText="Read Security Docs"
+                  linkTarget="https://blog.blyss.dev/confidential-ai-from-gpu-enclaves"
+                  arrow={false}
+                />
               </div>
             </div>
           </div>
