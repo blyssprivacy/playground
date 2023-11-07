@@ -139,21 +139,21 @@ export default function SSRPage() {
     }, [apiEndpoint]);
 
     return (
-        <Container size={"100%"} >
-            <SignedIn>
-            <Flex justify="flex-start" rowGap={50} align="flex-start" direction="column" >
-                <MenuBar />
+      <Container size={'100%'}>
+        <SignedIn>
+          <Flex justify="flex-start" rowGap={50} align="flex-start" direction="column">
+            <MenuBar />
 
-                <EnvSelector apiEndpoint={apiEndpoint} setApiEndpoint={setApiEndpoint} />
+            <EnvSelector apiEndpoint={apiEndpoint} setApiEndpoint={setApiEndpoint} />
 
-                <ApiKeys apiKeys={apiKeys} loading={loading} />
-                {/* <Buckets buckets={buckets} loading={loading} /> */}
-            </Flex>
-            </SignedIn>
-            <SignedOut>
-                <RedirectToSignIn />
-            </SignedOut>
-        </Container>
+            <ApiKeys apiKeys={apiKeys} loading={loading} />
+            {/* <Buckets buckets={buckets} loading={loading} /> */}
+          </Flex>
+        </SignedIn>
+        <SignedOut>
+          <RedirectToSignIn redirectUrl={'https://playground.blyss.dev/console'} />
+        </SignedOut>
+      </Container>
     );
 }
 

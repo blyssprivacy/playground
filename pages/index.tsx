@@ -54,7 +54,7 @@ function ConfidentialAI() {
     },
   ];
   return (
-    <Stack fz='xl' id="ai">
+    <Stack fz="xl" id="ai">
       <Group>
         <Title order={1} color="white">
           Confidential AI
@@ -73,23 +73,18 @@ function ConfidentialAI() {
         <SelectiveBr />
         It is impossible for anyone - including us - to spy on or tamper with your data.
         <SelectiveBr />
-        Read more about our <Anchor href="https://blog.blyss.dev/confidential-ai-from-gpu-enclaves">strong cryptographic security</Anchor>.
+        Read more about our{' '}
+        <Anchor href="https://blog.blyss.dev/confidential-ai-from-gpu-enclaves">strong cryptographic security</Anchor>.
       </Text>
       <List>
         <List.Item>
-          <Text size="xl">
-            Publicly verifiable chain of trust, tied to the TLS certificate
-          </Text>
+          <Text size="xl">Publicly verifiable chain of trust, tied to the TLS certificate</Text>
         </List.Item>
         <List.Item>
-          <Text size="xl">
-            Models specialized for code, embeddings, and more
-          </Text>
+          <Text size="xl">Models specialized for code, embeddings, and more</Text>
         </List.Item>
         <List.Item>
-          <Text size="xl">
-            Confidential finetuning option - we train a model for you, and never see your data
-          </Text>
+          <Text size="xl">Confidential finetuning option - we train a model for you, and never see your data</Text>
         </List.Item>
       </List>
 
@@ -100,7 +95,8 @@ function ConfidentialAI() {
           </Button>
         </Link>
       </Box>
-      or try a free public demo:
+
+      {/* or try a free public demo:
 
         <Flex gap={48} wrap="wrap">
           {demos.map((demo, i) => {
@@ -131,7 +127,7 @@ function ConfidentialAI() {
               </Card>
             );
           })}
-      </Flex>
+      </Flex> */}
     </Stack>
   );
 }

@@ -67,7 +67,7 @@ export default function MenuBar({
   return (
     <Flex
       m={0}
-      p={"10px 5%"}
+      p={'10px 5%'}
       align="center"
       justify="space-between"
       maw={maw}
@@ -76,7 +76,7 @@ export default function MenuBar({
         backgroundColor: '#1a1816',
         borderRadius: 12,
         border: '1px solid #333',
-        marginBottom: "5vh"
+        marginBottom: '5vh'
       }}>
       <BlyssLogotype />
       <SelectiveLine breakpoint="md" />
@@ -99,42 +99,43 @@ export default function MenuBar({
 
       <SelectiveLine breakpoint="xl" />
 
-      <Flex gap={"10%"}>
-      {isSignedIn ? (
+      <Flex gap={'10%'}>
+        {isSignedIn ? (
           <>
-          <Link href="/console">
+            <Link href="/console">
               <Button color="brand" fz="sm">
-              DASHBOARD
-            </Button>
-          </Link>
-          <UserButton />
+                DASHBOARD
+              </Button>
+            </Link>
+            <UserButton />
           </>
-      ) : (
-        <SignInButton redirectUrl='/console'><Button color="brand">SIGN IN</Button></SignInButton>
-      )}
-
+        ) : (
+          <SignInButton redirectUrl={'https://playground.blyss.dev/console'}>
+            <Button color="brand">SIGN IN</Button>
+          </SignInButton>
+        )}
 
         <MediaQuery largerThan="md" styles={{ display: 'none' }}>
-        <Menu shadow="md" width={200} opened={opened} onChange={setOpened}>
-          <Menu.Target>
-            <Burger opened={opened} onClick={() => setOpened(o => !o)} />
-          </Menu.Target>
+          <Menu shadow="md" width={200} opened={opened} onChange={setOpened}>
+            <Menu.Target>
+              <Burger opened={opened} onClick={() => setOpened(o => !o)} />
+            </Menu.Target>
 
-          <Menu.Dropdown>
-            <Menu.Item>
-              <ConfidentialAI />
-            </Menu.Item>
-            <Menu.Item>
-              <Buckets />
-            </Menu.Item>
+            <Menu.Dropdown>
+              <Menu.Item>
+                <ConfidentialAI />
+              </Menu.Item>
+              <Menu.Item>
+                <Buckets />
+              </Menu.Item>
 
-            <Menu.Divider />
-            <Box p={10}>
-              <Socials />
-            </Box>
-          </Menu.Dropdown>
-        </Menu>
-      </MediaQuery>
+              <Menu.Divider />
+              <Box p={10}>
+                <Socials />
+              </Box>
+            </Menu.Dropdown>
+          </Menu>
+        </MediaQuery>
       </Flex>
     </Flex>
   );
